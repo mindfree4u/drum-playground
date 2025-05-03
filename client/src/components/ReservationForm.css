@@ -125,14 +125,14 @@
   font-weight: 500;
   width: 70%;
   margin-left: 3%;
-  font-size: 14px;
+  font-size: 20px;
 }
 
 .date-value {
   color: hsl(290, 97%, 49%);
   font-weight: 500;
   width: 95%;
-  font-size: 16px;
+  font-size: 20px;
   margin-left: -15px;
 }
 
@@ -149,7 +149,7 @@
   background-color: rgb(247, 241, 241);
   cursor: pointer;
   transition: border-color 0.3s;
-  height: 16px;
+  height: 30px;
 }
 
 .date-input:focus {
@@ -565,6 +565,30 @@ input[type="date"]::-ms-expand {
     margin-left: 1px;
 
   }   
+
+  .date-input {
+    width: 55%;
+    padding: 0rem;
+    padding-left: 25px;
+    padding-right: 25px;
+    border: 1px solid #dbd3df;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #868686;
+    background-color: rgb(247, 241, 241);
+    cursor: pointer;
+    transition: border-color 0.3s;
+    height: 16px;
+  }
+  
+  .date-input:focus {
+    outline: none;
+    border-color: #5802f7;
+    box-shadow: 0 0 0 2px rgba(88, 2, 247, 0.2);
+  }
+  
+
 }
 
 @media (min-width: 1200px) {
@@ -673,7 +697,7 @@ table {
 }
 
 .action-button.cancel {
-  background-color: #ff4d4d;
+  background-color: #4f3df1;
   color: white;
 }
 
