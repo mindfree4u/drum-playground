@@ -186,8 +186,8 @@ function PaymentPage() {
           <div style={{ marginTop: 8 }}>
             <input
               type="number"
-              min="9000"
-              step="1000"
+              min="3000"
+              step="100"
               placeholder="금액을 입력하세요 (원)"
               value={customAmount}
               onChange={e => setCustomAmount(e.target.value)}
@@ -199,7 +199,7 @@ function PaymentPage() {
       <button
         onClick={handlePayment}
         style={{ width: '100%', padding: 12, background: '#007bff', color: '#fff', border: 'none', borderRadius: 4, fontSize: 16, cursor: 'pointer' }}
-        disabled={getAmount() < 9000}
+        disabled={getAmount() < 3000}
       >
         결제하기
       </button>

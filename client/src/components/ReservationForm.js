@@ -30,6 +30,9 @@ function ReservationForm() {
   // 터치 시작 위치를 저장하기 위한 상태 추가
   const [touchStartPositions, setTouchStartPositions] = useState({});
 
+  const [showCancelModal, setShowCancelModal] = useState(false);
+  const [pendingCancel, setPendingCancel] = useState(null);
+
   const timeSlots = ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00'];
   const rooms = ['Room A', 'Room B', 'Room C', 'Room E'];
 
@@ -279,21 +282,8 @@ function ReservationForm() {
         });
         setShowActionModal(true);
       } else if (isAdmin || isMyReservation) {
-        const confirmMessage = isAdmin 
-          ? '해당 예약을 취소하시겠습니까? (관리자 권한으로 취소)'
-          : '해당 예약을 취소하시겠습니까?';
-          
-        if (window.confirm(confirmMessage)) {
-          try {
-            await cancelReservation(reservationKey, reservationIds[reservationKey]);
-            setSelectedTimeSlot(null);
-            setSelectedRoom(null);
-            setShowTypeButtons(false);
-          } catch (error) {
-            console.error('예약 취소 중 오류 발생:', error);
-            alert('예약 취소 중 오류가 발생했습니다.');
-          }
-        }
+        setPendingCancel({ reservationKey, reservationId: reservationIds[reservationKey] });
+        setShowCancelModal(true);
       } else {
         alert('이미 예약된 시간입니다.');
       }
@@ -645,6 +635,27 @@ function ReservationForm() {
     handleReservation(timeSlot, room, e);
   };
 
+  const handleCancelConfirm = async () => {
+    if (pendingCancel) {
+      try {
+        await cancelReservation(pendingCancel.reservationKey, pendingCancel.reservationId);
+        setSelectedTimeSlot(null);
+        setSelectedRoom(null);
+        setShowTypeButtons(false);
+      } catch (error) {
+        console.error('예약 취소 중 오류 발생:', error);
+        alert('예약 취소 중 오류가 발생했습니다.');
+      }
+    }
+    setShowCancelModal(false);
+    setPendingCancel(null);
+  };
+
+  const handleCancelClose = () => {
+    setShowCancelModal(false);
+    setPendingCancel(null);
+  };
+
   return (
     <div className="reservation-container">
       <h2>놀이터 예약</h2>
@@ -863,6 +874,18 @@ function ReservationForm() {
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {showCancelModal && (
+        <div className="action-modal-overlay">
+          <div className="action-modal">
+            <h3>예약을 취소하시겠습니까?</h3>
+            <div className="action-buttons">
+              <button className="action-button cancel" onClick={handleCancelConfirm}>확인</button>
+              <button className="action-button close" onClick={handleCancelClose}>취소</button>
+            </div>
           </div>
         </div>
       )}
