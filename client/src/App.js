@@ -33,7 +33,13 @@ function App() {
   const [user, setUser] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
+//  const [showSplash, setShowSplash] = useState(true);
   const auth = getAuth();
+
+//  useEffect(() => {
+//    const splashTimer = setTimeout(() => setShowSplash(false), 2000);
+//    return () => clearTimeout(splashTimer);
+//  }, []);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -78,6 +84,22 @@ function App() {
 
     return () => unsubscribe();
   }, []);
+
+//  if (showSplash) {
+//    return (
+//      <div style={{
+//        position: 'fixed',
+//        top: 0,
+//        left: 0,
+//        width: '100vw',
+//        height: '100vh',
+//        backgroundImage: "url('/ddf_background.jpeg')",
+//        backgroundSize: 'cover',
+//        backgroundPosition: 'center',
+//        zIndex: 9999,
+//      }} />
+//    );
+//  }
 
   if (loading) {
     return <div className="loading">Loading...</div>;
