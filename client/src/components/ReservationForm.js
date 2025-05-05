@@ -282,6 +282,26 @@ function ReservationForm() {
         });
         setShowActionModal(true);
       } else if (isAdmin || isMyReservation) {
+        // 예약 취소 전에 예약 타입과 시간을 확인
+        const reservationDetail = reservationDetails[reservationKey];
+        const isLesson = reservationDetail && reservationDetail.startsWith('레슨');
+        
+        // 현재 시간과 예약 시간의 차이 계산 (시간 단위)
+        const now = new Date();
+        const [hours, minutes] = timeSlot.split(':').map(Number);
+        const reservationTime = new Date(selectedDate);
+        reservationTime.setHours(hours, minutes, 0, 0);
+        
+        // 시간 차이 계산 (밀리초 -> 시간)
+        const timeDiff = (reservationTime - now) / (1000 * 60 * 60);
+        
+        // 레슨이고 시간 차이가 3시간 이내인 경우
+        if (!isAdmin && isLesson && timeDiff <= 3 && timeDiff > 0) {
+          alert('3시간 이내의 레슨 취소는 관리자에게 연락을 통해 해주세요');
+          return;
+        }
+        
+        // 취소 가능한 경우 취소 모달 표시
         setPendingCancel({ reservationKey, reservationId: reservationIds[reservationKey] });
         setShowCancelModal(true);
       } else {
@@ -638,6 +658,37 @@ function ReservationForm() {
   const handleCancelConfirm = async () => {
     if (pendingCancel) {
       try {
+        // 예약 취소 전에 예약 타입과 시간을 다시 확인
+        const reservationKey = pendingCancel.reservationKey;
+        const reservationDetail = reservationDetails[reservationKey];
+        const isLesson = reservationDetail && reservationDetail.startsWith('레슨');
+        
+        if (isLesson) {
+          // 예약 키에서 시간 추출 (형식: YYYY-MM-DD_HH:MM_Room A)
+          const keyParts = reservationKey.split('_');
+          if (keyParts.length >= 2) {
+            const dateStr = keyParts[0]; // YYYY-MM-DD
+            const timeSlot = keyParts[1]; // HH:MM
+            
+            // 예약 날짜와 시간 생성
+            const [hours, minutes] = timeSlot.split(':').map(Number);
+            const reservationDate = new Date(dateStr);
+            reservationDate.setHours(hours, minutes, 0, 0);
+            
+            // 현재 시간과의 차이 계산
+            const now = new Date();
+            const timeDiff = (reservationDate - now) / (1000 * 60 * 60);
+            
+            // 레슨이고 시간 차이가 3시간 이내인 경우
+            if (!isAdmin && timeDiff <= 3 && timeDiff > 0) {
+              alert('3시간 이내의 레슨 취소는 관리자에게 연락을 통해 해주세요');
+              setShowCancelModal(false);
+              setPendingCancel(null);
+              return;
+            }
+          }
+        }
+        
         await cancelReservation(pendingCancel.reservationKey, pendingCancel.reservationId);
         setSelectedTimeSlot(null);
         setSelectedRoom(null);
@@ -815,6 +866,16 @@ function ReservationForm() {
           <li>원하는 시간/장소에 "예약하기" 를 누른 후 "레슨" 또는 "연습" 을 선택하면 예약이 이루어집니다.</li>
           <li>Room A는 레슨 전용입니다.(나머지 Room은 레슨과 연습 예약이 가능합니다)</li>
           <li>본인이 예약한 셀을 누르면 취소가 가능합니다.</li>
+          <li>단, {' '}
+          <span style={{ color: 'red' }}>
+              레슨 예약
+            </span>
+            <span style={{ color: 'red' }}>
+              은 시작 3시간 이내에는 취소가 불가능 {' '}
+            </span>
+            합니다. 취소 필요시 관리자에게 연락해주세요.
+          </li> 
+
           {isAdmin && <li>관리자는 자신이 예약한 항목을 클릭하여 예약자명을 수정할 수 있습니다.</li>}
         </ul>
       </div>

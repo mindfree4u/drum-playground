@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/static/css/main.b3211669.css",
-    "main.js": "/static/js/main.78ed3d98.js",
+    "main.js": "/static/js/main.e677d23a.js",
     "static/js/611.749623e1.chunk.js": "/static/js/611.749623e1.chunk.js",
     "static/media/ddf-logo.png": "/static/media/ddf-logo.dc0b53ca30d948382684.png",
     "index.html": "/index.html"
   },
   "entrypoints": [
     "static/css/main.b3211669.css",
-    "static/js/main.78ed3d98.js"
+    "static/js/main.e677d23a.js"
   ]
 }
