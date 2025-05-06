@@ -55,6 +55,28 @@
   cursor: not-allowed;
 }
 
+.contact-icons {
+  display: flex;
+  gap: 15px; /* 아이콘 사이 간격 */
+  margin-top: 10px; /* "피아노/작곡, 연습실대여" 와 아이콘 사이 간격 */
+}
+
+.contact-icon {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #333; /* 텍스트 색상 */
+}
+
+.contact-icon i {
+  margin-right: 5px; /* 아이콘과 텍스트 사이 간격 */
+  font-size: 1.2em; /* 아이콘 크기 */
+}
+
+.contact-icon span {
+  font-size: 0.9em;
+}
+
 .error-message {
   color: #dc3545;
   font-size: 14px;

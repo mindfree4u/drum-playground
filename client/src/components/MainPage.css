@@ -77,6 +77,10 @@
   margin: 0;
 }
 
+.contact-icons {
+  display: none;
+}
+
 .board-section, .video-section {
   margin-top: 30px;
 }
@@ -198,6 +202,32 @@
     min-height: auto;
   }
 
+  .contact-icons {
+    display: flex;
+    gap: 20px; /* 아이콘 사이 간격 조절 */
+    margin-top: 20px;
+    justify-content: center;
+  }
+  
+  .contact-icon {
+    display: flex;
+    flex-direction: column; /* 아이템을 세로로 배치 */
+    align-items: center; /* 가운데 정렬 */
+    text-decoration: none;
+    color: #06aab6;
+  }
+  
+  .contact-icon i {
+    font-size: 1.5em; /* 아이콘 크기 조절 */
+    margin-top: 10px; /* 아이콘 크기 조절 */
+    margin-bottom: -9px; /* 아이콘과 텍스트 사이 간격 조절 */
+  }
+  
+  .contact-icon span {
+    font-size: 0.9em;
+  }
+
+  
   .board-grid, .video-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
@@ -229,4 +259,5 @@
   .video-item-content {
     padding: 12px;
   }
+
 } 

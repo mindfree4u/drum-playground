@@ -1,33 +1,59 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { collection, getDocs, orderBy, query, limit } from 'firebase/firestore';
+import { collection, getDocs, orderBy, query, limit, where, getDoc, doc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { convertFromRaw, EditorState } from 'draft-js';
 import ddfLogo from '../assets/ddf-logo.png';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import './MainPage.css';
 
 function MainPage() {
   const [boardPosts, setBoardPosts] = useState([]);
   const [videos, setVideos] = useState([]);
   const [videoLimit, setVideoLimit] = useState(window.innerWidth > 768 ? 6 : 4);
+  const [adminPhone, setAdminPhone] = useState('');
   const navigate = useNavigate();
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
     const handleResize = () => {
-      const newLimit = window.innerWidth > 768 ? 6 : 4;
-      if (newLimit !== videoLimit) {
-        setVideoLimit(newLimit);
-      }
+      setIsMobile(window.innerWidth <= 768);
     };
 
     window.addEventListener('resize', handleResize);
     fetchPosts();
     fetchVideos();
+    fetchAdminPhone();
 
     return () => {
       window.removeEventListener('resize', handleResize);
     };
   }, [videoLimit]);
+
+  // Admin 전화번호 가져오기
+  const fetchAdminPhone = async () => {
+    try {
+      // 먼저 사용자 컬렉션에서 userId가 'admin'인 사용자 찾기
+      const usersRef = collection(db, 'users');
+      const q = query(usersRef, where('userId', '==', 'admin'));
+      const querySnapshot = await getDocs(q);
+      
+      if (!querySnapshot.empty) {
+        // admin 유저를 찾았을 때
+        const adminData = querySnapshot.docs[0].data();
+
+        if (adminData.phone) {
+          setAdminPhone(adminData.phone);
+        } else {
+          console.log('Admin phone not found');
+        }
+      } else {
+        console.log('Admin user not found');
+      }
+    } catch (error) {
+      console.error('Error fetching admin phone:', error);
+    }
+  };
 
   // Draft.js content를 일반 텍스트로 변환하는 함수
   const getPlainText = (content) => {
@@ -156,8 +182,23 @@ function MainPage() {
             <p>드럼 놀이터</p>
             <p>모든 연령 드럼 레슨, 체험</p>
             <p>피아노/작곡, 연습실대여</p>
+            {isMobile && (
+              <div className="contact-icons">
+                <a href={adminPhone ? `tel:${adminPhone}` : '#'} className="contact-icon">
+                  <i className="fas fa-phone"></i> <br /> 전화
+                </a>
+                <Link to="/reservation" className="contact-icon">
+                  <i className="far fa-calendar-alt"></i> <br /> 예약
+                </Link>
+                <Link to="/qna" className="contact-icon">
+                  <i className="far fa-question-circle"></i> <br /> 문의
+                </Link>
+              </div>
+            )}
           </div>
         </div>
+
+        
         <div className="intro-text">
           <p>
             드럼놀이터는 드럼을 사랑하는 모든 분들을 위한 공간입니다.
