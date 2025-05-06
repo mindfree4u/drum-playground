@@ -43,10 +43,8 @@
 
 .info-item span {
   flex: 1;
-
-
+  margin-left: 10px;
   color: #333;
-
 }
 
 .form-group {
@@ -161,7 +159,7 @@
   }
   
   .form-group input {
-    width: 100%;
+    width: 90%;
     max-width: 95%;
     margin-right: 10px;
     padding: 10px 15px;
@@ -171,22 +169,21 @@
   }
   
   .info-item {
-    /* flex: 1; */
-    /* flex-direction: column; */
+    display: flex;
+    margin-bottom: 15px;
   }
-
+  
   .info-item label {
-    width: 100%;
+    width: 20%;
     font-weight: 600;
     color: #555;
-    text-align: left;
+
   }
   
   .info-item span {
-    margin-left: -400px;
-    width: 100%;
+    flex: 1;
+    margin-left: 10px;
     color: #333;
-    text-align: left;
-  }
+  }  
 
 } 

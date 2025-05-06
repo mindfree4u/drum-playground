@@ -55,7 +55,7 @@ function App() {
           
           if (!querySnapshot.empty) {
             const userData = querySnapshot.docs[0].data();
-            console.log('Full user data:', userData);
+ //           console.log('Full user data:', userData);
             console.log('User role:', userData.role);
             console.log('User ID:', userData.userId);
             

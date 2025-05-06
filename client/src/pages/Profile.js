@@ -142,7 +142,7 @@ const Profile = () => {
           <span>{userData?.email}</span>
         </div>
         <div className="info-item">
-          <label>이름:</label>
+          <label>이  름:</label>
           <span>{userData?.name || '-'}</span>
         </div>
         <div className="info-item">
