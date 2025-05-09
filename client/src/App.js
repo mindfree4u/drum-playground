@@ -25,6 +25,7 @@ import MyReservations from './pages/MyReservations';
 import PaymentSuccess from './pages/PaymentSuccess';
 import PaymentSettings from './pages/PaymentSettings';
 import PaymentHistory from './pages/PaymentHistory';
+import ResetPassword from './components/ResetPassword';
 import './App.css';
 
 const PaymentPage = lazy(() => import('./pages/PaymentPage'));
@@ -111,8 +112,9 @@ function App() {
         <MainMenu isAdmin={isAdmin} />
         <div className="content-wrapper">
           <Routes>
-            <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
-            <Route path="/signup" element={!user ? <Signup /> : <Navigate to="/" />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/signup" element={<Signup />} />
             <Route path="/reservation" element={user ? <ReservationForm isAdmin={isAdmin} /> : <Navigate to="/login" />} />
             <Route path="/main" element={<MainPage />} />
             <Route path="/introduction" element={<Introduction isAdmin={isAdmin} />} />

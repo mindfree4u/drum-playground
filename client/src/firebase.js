@@ -15,12 +15,10 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-const storage = getStorage(app);
-const functions = getFunctions(app);
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+export const storage = getStorage(app);
+export const functions = getFunctions(app);
 
 // 결제 알림 이메일 전송 함수
-export const sendPaymentNotification = httpsCallable(functions, 'sendPaymentNotification');
-
-export { auth, db, storage }; 
+export const sendPaymentNotification = httpsCallable(functions, 'sendPaymentNotification'); 

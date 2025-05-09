@@ -15,6 +15,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 400px;
+  position: relative;
 }
 
 .form-group {
@@ -51,16 +52,40 @@ button:hover {
   background-color: #0056b3;
 }
 
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.auth-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
 .signup-link {
-  display: block;
-  text-align: center;
   color: #007bff;
   text-decoration: none;
-  margin-top: 10px;
 }
 
 .signup-link:hover {
   text-decoration: underline;
+}
+
+.find-link {
+  background: none;
+  border: none;
+  color: #007bff;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  width: auto;
+}
+
+.find-link:hover {
+  text-decoration: underline;
+  background: none;
 }
 
 .error-message {
@@ -68,4 +93,53 @@ button:hover {
   margin-bottom: 15px;
   text-align: center;
   font-size: 14px;
+}
+
+.success-message {
+  color: #28a745;
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.find-form {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  margin-top: 20px;
+  position: relative;
+}
+
+.find-form h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+  padding-right: 30px;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-button:hover {
+  color: #333;
+  background: none;
 } 

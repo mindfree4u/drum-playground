@@ -8,7 +8,9 @@ service cloud.firestore {
       		|| request.headers.get('Origin') == "https://drum-playground.firebaseapp.com"
           || request.headers.get('Origin') == "https://drum-playgroung.web.app"
           || request.headers.get('Origin') == "https://ddf.kro.kr"
-          || request.headers.get('Origin') == "https://www.ddf.kro.kr";
+          || request.headers.get('Origin') == "https://www.ddf.kro.kr"
+          || request.headers.get('Origin') == "https://ddfoo.co.kr"
+          || request.headers.get('Origin') == "https://www.ddfoo.co.kr";
     }
       allow read, write: if true;
       allow create: if cors();
