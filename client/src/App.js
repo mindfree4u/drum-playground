@@ -25,6 +25,7 @@ import MyReservations from './pages/MyReservations';
 import PaymentSuccess from './pages/PaymentSuccess';
 import PaymentSettings from './pages/PaymentSettings';
 import PaymentHistory from './pages/PaymentHistory';
+import ResetPassword from './components/ResetPassword';
 import './App.css';
 import { ThemeProvider } from '@mui/material/styles';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -83,6 +84,7 @@ function App() {
   }
 
   return (
+<<<<<<< HEAD
     <ThemeProvider theme={theme}>
       <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="ko">
         <Router>
@@ -126,6 +128,43 @@ function App() {
         </Router>
       </LocalizationProvider>
     </ThemeProvider>
+=======
+    <Router>
+      <div className="app">
+        <MainMenu isAdmin={isAdmin} />
+        <div className="content-wrapper">
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/reservation" element={user ? <ReservationForm isAdmin={isAdmin} /> : <Navigate to="/login" />} />
+            <Route path="/main" element={<MainPage />} />
+            <Route path="/introduction" element={<Introduction isAdmin={isAdmin} />} />
+            <Route path="/video-upload" element={<VideoUpload isAdmin={isAdmin} />} />
+            <Route path="/playground-photos" element={<PlaygroundPhotos isAdmin={isAdmin} />} />
+            <Route path="/board" element={<Board isAdmin={isAdmin} />} />
+            <Route path="/qna" element={<QnABoard isAdmin={isAdmin} />} />
+            <Route path="/board/post/:id" element={<PostDetail />} />
+            <Route path="/my-page" element={<MyPage />} />
+            <Route path="/location" element={<Location />} />
+            <Route path="/profile" element={user ? <Profile /> : <Navigate to="/login" />} />
+            <Route path="/my-reservations" element={user ? <MyReservations /> : <Navigate to="/login" />} />
+            <Route path="/member-info" element={user && isAdmin ? <MemberInfo /> : <Navigate to="/" />} />
+            <Route path="/payment-settings" element={user && isAdmin ? <PaymentSettings /> : <Navigate to="/" />} />
+            <Route path="/payment" element={user ? (
+              <Suspense fallback={<div>Loading...</div>}>
+                <PaymentPage />
+              </Suspense>
+            ) : <Navigate to="/login" />} />
+            <Route path="/payment/success" element={user ? <PaymentSuccess /> : <Navigate to="/login" />} />
+            <Route path="/admin/payment-history" element={user && isAdmin ? <PaymentHistory /> : <Navigate to="/" />} />
+            <Route path="/" element={<Navigate to="/main" replace />} />
+          </Routes>
+          <Footer />
+        </div>
+      </div>
+    </Router>
+>>>>>>> 50a60e87b4fdfd723d924c1f96a2f55e633c4d2b
   );
 }
 

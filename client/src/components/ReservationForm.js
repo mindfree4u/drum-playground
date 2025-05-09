@@ -157,8 +157,17 @@ function ReservationForm() {
   };
 
   const handleDateChange = (e) => {
-    const newDate = new Date(e.target.value);
-    setSelectedDate(newDate);
+    const selectedDate = new Date(e.target.value);
+    setSelectedDate(selectedDate);
+    setSelectedTimeSlot('');
+    setSelectedRoom('');
+  };
+
+  // 날짜 선택 제한을 위한 min 속성 계산
+  const getMinDate = () => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return today.toISOString().split('T')[0];
   };
 
   const handleTouchStart = (e) => {
@@ -259,6 +268,7 @@ function ReservationForm() {
       return;
     }
 
+    console.log('userRole===================>', userRole);
     if (userRole === 'guest') {
       if (window.confirm('비회원의 경우 네이버에서 예약을 해 주시기 바랍니다. 네이버로 이동하시겠습니까?')) {
         handleNaverPlaceRedirect();
@@ -752,27 +762,15 @@ function ReservationForm() {
               setSelectedDate(newDate);
               fetchReservations(newDate);
             }}
-            /*
-            style={{
-              position: 'relative',
-              zIndex: 10,
-              padding: '8px 12px',
-              fontSize: '16px',
-              cursor: 'pointer',
-              backgroundColor: 'transparent',
-              border: 'none',
-              outline: 'none'
-            }}
-              */
           >
             &gt;
           </button>
         </div>
         <input
           type="date"
-          value={new Date(selectedDate.getTime() - (selectedDate.getTimezoneOffset() * 60000)).toISOString().split('T')[0]}
+          value={selectedDate.toISOString().split('T')[0]}
           onChange={handleDateChange}
-          min={new Date(Date.now() - (new Date().getTimezoneOffset() * 60000)).toISOString().split('T')[0]}
+          min={isAdmin ? undefined : getMinDate()}
           className="date-input"
         />
       </div>
