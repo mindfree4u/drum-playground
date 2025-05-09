@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword, updateProfile, getAuth } from 'firebase/auth';
 import { db } from '../firebase';
-import { doc, setDoc, getDocs, query, collection, where, Timestamp } from 'firebase/firestore';
+import { doc, setDoc, getDocs, query, collection, where, Timestamp, serverTimestamp } from 'firebase/firestore';
 import './Signup.css';
 
 function Signup() {
@@ -139,6 +139,7 @@ function Signup() {
         name,
         phone,
         userId,
+        role: 'guest',
         isAdmin: userId === 'admin',
         createdAt: Timestamp.now()
       });
@@ -148,13 +149,14 @@ function Signup() {
         displayName: name
       });
 
-      navigate('/main');
+      alert('회원가입이 완료되었습니다.');
+      navigate('/login');
     } catch (error) {
       console.error('Error signing up:', error);
       if (error.code === 'auth/email-already-in-use') {
         setError('이미 사용 중인 이메일입니다.');
       } else if (error.code === 'auth/weak-password') {
-        setError('비밀번호는 6자 이상이어야 합니다.');
+        setError('비밀번호가 너무 약합니다.');
       } else if (error.code === 'auth/invalid-email') {
         setError('올바른 이메일 형식이 아닙니다.');
       } else if (error.message) {

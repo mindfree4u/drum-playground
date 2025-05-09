@@ -259,6 +259,7 @@ function ReservationForm() {
       return;
     }
 
+    console.log('userRole===================>', userRole);
     if (userRole === 'guest') {
       if (window.confirm('비회원의 경우 네이버에서 예약을 해 주시기 바랍니다. 네이버로 이동하시겠습니까?')) {
         handleNaverPlaceRedirect();

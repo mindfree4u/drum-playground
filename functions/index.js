@@ -2,22 +2,20 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const nodemailer = require('nodemailer');
 const { onDocumentCreated, onDocumentDeleted } = require('firebase-functions/v2/firestore');
-const { defineSecret } = require('firebase-functions/params');
 const cors = require('cors')({ origin: true });
 admin.initializeApp();
 
-// 환경변수에 이메일 정보 저장 (firebase functions:config:set 로 설정)
-const NAVER_EMAIL = defineSecret('NAVER_EMAIL');
-const NAVER_PASSWORD = defineSecret('NAVER_PASSWORD');
+// Firebase Functions config에서 이메일 정보 가져오기
+const emailConfig = functions.config().email;
 const adminMail = ['mindfree4u@daum.net', 'jsdtoner@naver.com', 'ddfoo@naver.com'];
 
-const getTransporter = (naverEmail, naverPassword) => nodemailer.createTransport({
+const getTransporter = () => nodemailer.createTransport({
   host: 'smtp.naver.com',
   port: 465,
   secure: true,
   auth: {
-    user: naverEmail,
-    pass: naverPassword,
+    user: emailConfig.naver_email,
+    pass: emailConfig.naver_password,
   },
 });
 
@@ -32,9 +30,9 @@ exports.sendReservationMail = onDocumentCreated(
     if (!snapshot) return;
     const data = snapshot.data();
     if (!data) return;
-    const transporter = getTransporter(NAVER_EMAIL.value(), NAVER_PASSWORD.value());
+    const transporter = getTransporter();
     const mailOptions = {
-      from: `"드럼놀이터" <${NAVER_EMAIL.value()}>`,
+      from: `"드럼놀이터" <${emailConfig.naver_email}>`,
       to: adminMail,
       subject: `[예약 알림] ${data.userName}님의 새로운 예약[${data.type}] ${data.date},${data.timeSlot} (${data.room})이 등록되었습니다`,
       text: `예약자: ${data.userName}\n구분: ${data.type}\n날짜: ${data.date}\n시간: ${data.timeSlot}\n룸: ${data.room}`,
@@ -56,9 +54,9 @@ exports.sendCancelMail = onDocumentDeleted(
     const data = snapshot.data();
 
     if (!data) return;
-    const transporter = getTransporter(NAVER_EMAIL.value(), NAVER_PASSWORD.value());
+    const transporter = getTransporter();
     const mailOptions = {
-      from: `"드럼놀이터" <${NAVER_EMAIL.value()}>`,
+      from: `"드럼놀이터" <${emailConfig.naver_email}>`,
       to: adminMail,
       subject: `[예약 취소 알림] ${data.userName}님의 [${data.type}] ${data.date},${data.timeSlot} (${data.room}) 예약이 취소되었습니다`,
       text: `예약자: ${data.userName}\n구분: ${data.type}\n날짜: ${data.date}\n시간: ${data.timeSlot}\n룸: ${data.room}`,
@@ -208,9 +206,9 @@ exports.onNewUserSignup = onDocumentCreated(
     const data = snapshot.data();
     if (!data) return;
 
-    const transporter = getTransporter(NAVER_EMAIL.value(), NAVER_PASSWORD.value());
+    const transporter = getTransporter();
     const mailOptions = {
-      from: `"드럼놀이터" <${NAVER_EMAIL.value()}>`,
+      from: `"드럼놀이터" <${emailConfig.naver_email}>`,
       to: adminMail,
       subject: '[드럼놀이터] 새로운 회원가입 알림(${data.name})',
       html: `
@@ -243,10 +241,10 @@ exports.sendPaymentNotification = functions.https.onCall(
     const { userName, amount, paymentType, timestamp } = request.data;
 
     try {
-      const transporter = getTransporter(NAVER_EMAIL.value(), NAVER_PASSWORD.value());
+      const transporter = getTransporter();
       
       const mailOptions = {
-        from: `"드럼놀이터" <${NAVER_EMAIL.value()}>`,
+        from: `"드럼놀이터" <${emailConfig.naver_email}>`,
         to: adminMail,
         subject: `[결제 알림] ${userName}님의 새로운 결제가 완료되었습니다`,
         html: `
@@ -277,10 +275,10 @@ exports.sendIdEmail = functions.https.onCall(
     const { email, userId } = request.data;
 
     try {
-      const transporter = getTransporter(NAVER_EMAIL.value(), NAVER_PASSWORD.value());
+      const transporter = getTransporter();
       
       const mailOptions = {
-        from: `"드럼놀이터" <${NAVER_EMAIL.value()}>`,
+        from: `"드럼놀이터" <${emailConfig.naver_email}>`,
         to: email,
         subject: '[드럼놀이터] 아이디 찾기 결과',
         html: `
@@ -306,84 +304,79 @@ exports.sendIdEmail = functions.https.onCall(
 );
 
 // 비밀번호 찾기 이메일 전송 함수
-exports.sendPasswordEmail = functions.https.onCall(
-  {
-    secrets: ['NAVER_EMAIL', 'NAVER_PASSWORD'],
-  },
-  async (request) => {
-    console.log('Password find request received:', request.data);
-    
-    const { email, userId } = request.data;
-    
-    if (!email || !userId) {
-      console.error('Missing required fields:', { email, userId });
-      throw new functions.https.HttpsError(
-        'invalid-argument',
-        '이메일과 사용자 ID가 필요합니다.'
-      );
-    }
-
-    try {
-      console.log('Creating email transporter...');
-      const transporter = getTransporter(NAVER_EMAIL.value(), NAVER_PASSWORD.value());
-      
-      // Firebase Admin SDK를 사용하여 비밀번호 재설정 링크 생성
-      const actionCodeSettings = {
-        url: 'https://www.ddfoo.co.kr/reset-password',
-        handleCodeInApp: true
-      };
-
-      const resetLink = await admin.auth().generatePasswordResetLink(email, actionCodeSettings);
-      
-      // 도메인을 ddfoo.co.kr로 변경하고 oobCode 파라미터 유지
-      const oobCode = resetLink.split('oobCode=')[1];
-      const customResetLink = `https://www.ddfoo.co.kr/reset-password?oobCode=${oobCode}`;
-      
-      console.log('Preparing email options...');
-      const mailOptions = {
-        from: `"드럼놀이터" <${NAVER_EMAIL.value()}>`,
-        to: email,
-        subject: '[드럼놀이터] 비밀번호 재설정',
-        html: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-            <h2 style="color: #333;">드럼놀이터 비밀번호 재설정</h2>
-            <p>안녕하세요. 드럼놀이터입니다.</p>
-            <p>비밀번호 재설정을 요청하셨습니다.</p>
-            <p>아래 링크를 클릭하여 새로운 비밀번호를 설정해주세요:</p>
-            <p style="margin: 20px 0;">
-              <a href="${customResetLink}" 
-                 style="background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">
-                비밀번호 재설정하기
-              </a>
-            </p>
-            <p>이 링크는 1시간 동안만 유효합니다.</p>
-            <p>비밀번호 재설정을 요청하지 않으셨다면, 이 이메일을 무시하셔도 됩니다.</p>
-            <hr style="border: 1px solid #eee; margin: 20px 0;">
-            <p style="color: #666; font-size: 12px;">본 메일은 발신 전용입니다.</p>
-          </div>
-        `
-      };
-
-      console.log('Sending email...', {
-        from: mailOptions.from,
-        to: mailOptions.to,
-        subject: mailOptions.subject
-      });
-
-      await transporter.sendMail(mailOptions);
-      console.log('Password reset email sent successfully');
-      return { success: true, message: '비밀번호 재설정 링크가 이메일로 전송되었습니다.' };
-    } catch (error) {
-      console.error('이메일 전송 실패:', error);
-      console.error('Error details:', {
-        message: error.message,
-        stack: error.stack,
-        code: error.code
-      });
-      throw new functions.https.HttpsError(
-        'internal',
-        '이메일 전송에 실패했습니다: ' + error.message
-      );
-    }
+exports.sendPasswordEmail = functions.https.onCall(async (request) => {
+  console.log('Password find request received:', request.data);
+  
+  const { email, userId } = request.data;
+  
+  if (!email || !userId) {
+    console.error('Missing required fields:', { email, userId });
+    throw new functions.https.HttpsError(
+      'invalid-argument',
+      '이메일과 사용자 ID가 필요합니다.'
+    );
   }
-);
+
+  try {
+    console.log('Creating email transporter...');
+    const transporter = getTransporter();
+    
+    // Firebase Admin SDK를 사용하여 비밀번호 재설정 링크 생성
+    const actionCodeSettings = {
+      url: 'https://www.ddfoo.co.kr/reset-password',
+      handleCodeInApp: true
+    };
+
+    const resetLink = await admin.auth().generatePasswordResetLink(email, actionCodeSettings);
+    
+    // 도메인을 ddfoo.co.kr로 변경하고 oobCode 파라미터 유지
+    const oobCode = resetLink.split('oobCode=')[1];
+    const customResetLink = `https://www.ddfoo.co.kr/reset-password?oobCode=${oobCode}`;
+    
+    console.log('Preparing email options...');
+    const mailOptions = {
+      from: `"드럼놀이터" <${emailConfig.naver_email}>`,
+      to: email,
+      subject: '[드럼놀이터] 비밀번호 재설정',
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #333;">드럼놀이터 비밀번호 재설정</h2>
+          <p>안녕하세요. 드럼놀이터입니다.</p>
+          <p>비밀번호 재설정을 요청하셨습니다.</p>
+          <p>아래 링크를 클릭하여 새로운 비밀번호를 설정해주세요:</p>
+          <p style="margin: 20px 0;">
+            <a href="${customResetLink}" 
+               style="background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">
+              비밀번호 재설정하기
+            </a>
+          </p>
+          <p>이 링크는 1시간 동안만 유효합니다.</p>
+          <p>비밀번호 재설정을 요청하지 않으셨다면, 이 이메일을 무시하셔도 됩니다.</p>
+          <hr style="border: 1px solid #eee; margin: 20px 0;">
+          <p style="color: #666; font-size: 12px;">본 메일은 발신 전용입니다.</p>
+        </div>
+      `
+    };
+
+    console.log('Sending email...', {
+      from: mailOptions.from,
+      to: mailOptions.to,
+      subject: mailOptions.subject
+    });
+
+    await transporter.sendMail(mailOptions);
+    console.log('Password reset email sent successfully');
+    return { success: true, message: '비밀번호 재설정 링크가 이메일로 전송되었습니다.' };
+  } catch (error) {
+    console.error('이메일 전송 실패:', error);
+    console.error('Error details:', {
+      message: error.message,
+      stack: error.stack,
+      code: error.code
+    });
+    throw new functions.https.HttpsError(
+      'internal',
+      '이메일 전송에 실패했습니다: ' + error.message
+    );
+  }
+});
