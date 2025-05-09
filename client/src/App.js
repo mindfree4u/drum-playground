@@ -26,20 +26,20 @@ import PaymentSuccess from './pages/PaymentSuccess';
 import PaymentSettings from './pages/PaymentSettings';
 import PaymentHistory from './pages/PaymentHistory';
 import './App.css';
+import { ThemeProvider } from '@mui/material/styles';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { theme } from './theme/theme';
+import 'dayjs/locale/ko';
 
 const PaymentPage = lazy(() => import('./pages/PaymentPage'));
+const NonMemberReservation = lazy(() => import('./components/NonMemberReservation'));
 
 function App() {
   const [user, setUser] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
-//  const [showSplash, setShowSplash] = useState(true);
   const auth = getAuth();
-
-//  useEffect(() => {
-//    const splashTimer = setTimeout(() => setShowSplash(false), 2000);
-//    return () => clearTimeout(splashTimer);
-//  }, []);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -49,24 +49,17 @@ function App() {
       
       if (user) {
         try {
-          // 먼저 email로 userId 찾기
           const userQuery = query(collection(db, 'users'), where('email', '==', user.email));
           const querySnapshot = await getDocs(userQuery);
           
           if (!querySnapshot.empty) {
             const userData = querySnapshot.docs[0].data();
- //           console.log('Full user data:', userData);
             console.log('User role:', userData.role);
             console.log('User ID:', userData.userId);
             
-            // role이 'admin'인 경우 관리자로 설정
             const isUserAdmin = userData.isAdmin === true || userData.role === 'admin' || userData.userId === 'admin';
             console.log('Is admin check result:', isUserAdmin);
             setIsAdmin(isUserAdmin);
-            
-            // 디버깅을 위한 타입 체크
-//            console.log('Role type:', typeof userData.role);
-//            console.log('Role value exact:', `'${userData.role}'`);
           } else {
             console.log('No user document found for email:', user.email);
             setIsAdmin(false);
@@ -85,61 +78,54 @@ function App() {
     return () => unsubscribe();
   }, []);
 
-//  if (showSplash) {
-//    return (
-//      <div style={{
-//        position: 'fixed',
-//        top: 0,
-//        left: 0,
-//        width: '100vw',
-//        height: '100vh',
-//        backgroundImage: "url('/ddf_background.jpeg')",
-//        backgroundSize: 'cover',
-//        backgroundPosition: 'center',
-//        zIndex: 9999,
-//      }} />
-//    );
-//  }
-
   if (loading) {
     return <div className="loading">Loading...</div>;
   }
 
   return (
-    <Router>
-      <div className="app">
-        <MainMenu isAdmin={isAdmin} />
-        <div className="content-wrapper">
-          <Routes>
-            <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
-            <Route path="/signup" element={!user ? <Signup /> : <Navigate to="/" />} />
-            <Route path="/reservation" element={user ? <ReservationForm isAdmin={isAdmin} /> : <Navigate to="/login" />} />
-            <Route path="/main" element={<MainPage />} />
-            <Route path="/introduction" element={<Introduction isAdmin={isAdmin} />} />
-            <Route path="/video-upload" element={<VideoUpload isAdmin={isAdmin} />} />
-            <Route path="/playground-photos" element={<PlaygroundPhotos isAdmin={isAdmin} />} />
-            <Route path="/board" element={<Board isAdmin={isAdmin} />} />
-            <Route path="/qna" element={<QnABoard isAdmin={isAdmin} />} />
-            <Route path="/board/post/:id" element={<PostDetail />} />
-            <Route path="/my-page" element={<MyPage />} />
-            <Route path="/location" element={<Location />} />
-            <Route path="/profile" element={user ? <Profile /> : <Navigate to="/login" />} />
-            <Route path="/my-reservations" element={user ? <MyReservations /> : <Navigate to="/login" />} />
-            <Route path="/member-info" element={user && isAdmin ? <MemberInfo /> : <Navigate to="/" />} />
-            <Route path="/payment-settings" element={user && isAdmin ? <PaymentSettings /> : <Navigate to="/" />} />
-            <Route path="/payment" element={user ? (
-              <Suspense fallback={<div>Loading...</div>}>
-                <PaymentPage />
-              </Suspense>
-            ) : <Navigate to="/login" />} />
-            <Route path="/payment/success" element={user ? <PaymentSuccess /> : <Navigate to="/login" />} />
-            <Route path="/admin/payment-history" element={user && isAdmin ? <PaymentHistory /> : <Navigate to="/" />} />
-            <Route path="/" element={<Navigate to="/main" replace />} />
-          </Routes>
-          <Footer />
-        </div>
-      </div>
-    </Router>
+    <ThemeProvider theme={theme}>
+      <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="ko">
+        <Router>
+          <div className="app-container">
+            <MainMenu isAdmin={isAdmin} />
+            <div className="content-wrapper">
+              <Routes>
+                <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
+                <Route path="/signup" element={!user ? <Signup /> : <Navigate to="/" />} />
+                <Route path="/reservation" element={user ? <ReservationForm isAdmin={isAdmin} /> : <Navigate to="/login" />} />
+                <Route path="/main" element={<MainPage />} />
+                <Route path="/introduction" element={<Introduction isAdmin={isAdmin} />} />
+                <Route path="/video-upload" element={<VideoUpload isAdmin={isAdmin} />} />
+                <Route path="/playground-photos" element={<PlaygroundPhotos isAdmin={isAdmin} />} />
+                <Route path="/board" element={<Board isAdmin={isAdmin} />} />
+                <Route path="/qna" element={<QnABoard isAdmin={isAdmin} />} />
+                <Route path="/board/post/:id" element={<PostDetail />} />
+                <Route path="/my-page" element={<MyPage />} />
+                <Route path="/location" element={<Location />} />
+                <Route path="/profile" element={user ? <Profile /> : <Navigate to="/login" />} />
+                <Route path="/my-reservations" element={user ? <MyReservations /> : <Navigate to="/login" />} />
+                <Route path="/member-info" element={user && isAdmin ? <MemberInfo /> : <Navigate to="/" />} />
+                <Route path="/payment-settings" element={user && isAdmin ? <PaymentSettings /> : <Navigate to="/" />} />
+                <Route path="/payment" element={user ? (
+                  <Suspense fallback={<div>Loading...</div>}>
+                    <PaymentPage />
+                  </Suspense>
+                ) : <Navigate to="/login" />} />
+                <Route path="/payment/success" element={user ? <PaymentSuccess /> : <Navigate to="/login" />} />
+                <Route path="/admin/payment-history" element={user && isAdmin ? <PaymentHistory /> : <Navigate to="/" />} />
+                <Route path="/non-member-reservation" element={
+                  <Suspense fallback={<div>Loading...</div>}>
+                    <NonMemberReservation />
+                  </Suspense>
+                } />
+                <Route path="/" element={<Navigate to="/main" replace />} />
+              </Routes>
+              <Footer />
+            </div>
+          </div>
+        </Router>
+      </LocalizationProvider>
+    </ThemeProvider>
   );
 }
 

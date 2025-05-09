@@ -170,6 +170,38 @@
   object-fit: cover;
 }
 
+.action-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.reservation-button,
+.non-member-button {
+  padding: 12px 24px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.reservation-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.non-member-button {
+  background-color: #2196F3;
+  color: white;
+}
+
+.reservation-button:hover,
+.non-member-button:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
 /* @media (min-width: 769px) {
   .board-grid, .video-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -260,4 +292,4 @@
     padding: 12px;
   }
 
-} 
+}
