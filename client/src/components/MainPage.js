@@ -174,7 +174,7 @@ function MainPage() {
 
   return (
     <div className="main-page">
-      <h1 className="welcome-title">드럼놀이터에 오신 것을 환영합니다</h1>
+      <h1 className="welcome-title">DDF 드럼 연습실</h1>
       <div className="intro-section">
         <div className="logo-container">
           <img src={ddfLogo} alt="DDF Logo" className="ddf-logo" />
@@ -198,6 +198,10 @@ function MainPage() {
           </div>
         </div>
 
+        <div className="action-buttons">
+          <Link to="/reservation" className="reservation-button">예약하기</Link>
+          <Link to="/non-member-reservation" className="non-member-button">비회원 예약</Link>
+        </div>
         
         <div className="intro-text">
           <p>
@@ -258,4 +262,4 @@ function MainPage() {
   );
 }
 
-export default MainPage; 
+export default MainPage;
