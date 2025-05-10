@@ -97,7 +97,7 @@ function Login() {
         setTimeout(() => {
           setShowFindId(false);
           setFindResult('');
-        }, 3000);
+        }, 2000);
       } else {
         setError('이메일 전송 중 오류가 발생했습니다.');
       }
@@ -150,7 +150,7 @@ function Login() {
         setTimeout(() => {
           setShowFindPassword(false);
           setFindResult('');
-        }, 3000);
+        }, 2000);
       } else {
         setError(result.data.message || '이메일 전송 중 오류가 발생했습니다.');
       }

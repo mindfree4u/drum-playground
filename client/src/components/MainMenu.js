@@ -197,7 +197,10 @@ function MainMenu({ isAdmin }) {
                     <div className="submenu">
                       <Link to="/profile" className="submenu-item" onClick={() => handleMenuClick('/profile')}>개인정보 수정</Link>
                       <Link to="/my-reservations" className="submenu-item" onClick={() => handleMenuClick('/my-reservations')}>예약현황</Link>
+                      {/*
                       <Link to="/payment" className="submenu-item" onClick={() => handleMenuClick('/payment')}>결제하기</Link>
+                      */} 
+
                       <button onClick={handleLogout} className="logout-button">
                         로그아웃
                       </button>
