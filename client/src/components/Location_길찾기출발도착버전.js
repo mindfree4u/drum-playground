@@ -10,19 +10,40 @@ const Location = () => {
   const [mapLoaded, setMapLoaded] = useState(false);
   const [mapError, setMapError] = useState(null);
   const address = "대전광역시 유성구 하기동 송림로53번길 6-17";
+  
+// 정확한 좌표값 설정 (드럼 놀이터 위치)
+const DRUM_LOCATION = {
+  lat: 36.3871952366413,
+  lng: 127.324930752035
+};
 
-  // 정확한 좌표값 설정 (드럼 놀이터 위치)
-  const DRUM_LOCATION = {
-    lat: 36.3871952366413,
-    lng: 127.324930752035
-  };
 
   const handleFindWay = () => {
-    const latitude = DRUM_LOCATION.lat;
-    const longitude = DRUM_LOCATION.lng;
-    const placeName = "드럼놀이터";
-    const url = `https://map.naver.com/v5/entry/coordinates/127.324930752035, 36.3871952366413, 드럼놀이터?c=15.00,0,0,0,dh`;
-    window.open(url, "_blank");
+    if (!window.naver || !window.naver.maps) {
+      alert("지도가 아직 로드되지 않았습니다.");
+      return;
+    }
+  
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const currentLat = position.coords.latitude;
+          const currentLng = position.coords.longitude;
+  
+          const startName = "내 위치";
+          const endName = "드럼놀이터";
+
+          const url = `https://map.naver.com/v5/directions/${currentLng},${currentLat},${startName}/127.324930752035,36.3871952366413,${endName},,/-/transit?c=15.00,0,0,0,dh`;
+          console.log("url ===> ", url);
+          window.open(url, "_blank");
+        },
+        (error) => {
+          alert("위치 정보를 가져올 수 없습니다. 위치 권한을 허용했는지 확인해주세요.");
+        }
+      );
+    } else {
+      alert("이 브라우저는 위치 정보를 지원하지 않습니다.");
+    }
   };
 
   useEffect(() => {
@@ -37,9 +58,9 @@ const Location = () => {
             position: naver.maps.Position.TOP_RIGHT
           }
         };
-
+        
         const map = new naver.maps.Map(container, options);
-
+        
         // 마커 생성
         markerRef.current = new naver.maps.Marker({
           position: options.center,
@@ -71,7 +92,7 @@ const Location = () => {
 
         // 초기에 정보창 표시
         infoWindow.open(map, markerRef.current);
-
+        
         setMapLoaded(true);
       } catch (error) {
         console.error("지도 초기화 중 오류 발생:", error);
@@ -82,7 +103,7 @@ const Location = () => {
     const loadNaverMap = () => {
       const script = document.createElement('script');
       script.type = 'text/javascript';
-      script.src = "https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=dmxiknm0wt&submodules=geocoder";
+      script.src = "https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=dmxiknm0wt&submodules=geocoder"; 
       script.onload = () => {
         // API가 완전히 로드될 때까지 대기
         setTimeout(initializeMap, 300);
@@ -116,7 +137,7 @@ const Location = () => {
           {!mapLoaded && <div className="map-loading">지도 로딩 중...</div>}
           {mapError && <div className="map-error">{mapError}</div>}
         </div>
-
+        
         <div className="info-section">
           <div className="address-info">
             <p>

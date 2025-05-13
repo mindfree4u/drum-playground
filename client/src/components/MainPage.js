@@ -197,12 +197,7 @@ function MainPage() {
             )}
           </div>
         </div>
-
-        <div className="action-buttons">
-          <Link to="/reservation" className="reservation-button">예약하기</Link>
-          <Link to="/non-member-reservation" className="non-member-button">비회원 예약</Link>
-        </div>
-        
+       
         <div className="intro-text">
           <p>
             드럼놀이터는 드럼을 사랑하는 모든 분들을 위한 공간입니다.
