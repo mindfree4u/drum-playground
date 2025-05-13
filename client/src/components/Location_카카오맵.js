@@ -55,7 +55,6 @@ const Location = () => {
       const script = document.createElement('script');
       script.type = 'text/javascript';
       script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=26d8640fa64f99a40fc037fb0e5bb873&libraries=services&autoload=false`;
-//      script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=a673d11b9672927edd06606d5dee9046&libraries=services&autoload=false`;
       
       script.onload = () => {
         window.kakao.maps.load(() => {

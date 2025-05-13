@@ -130,6 +130,7 @@
 @media (max-width: 768px) {
   .profile-container {
     padding: 10px;
+    margin-left: 25px;
   }
 
   .profile-section {
@@ -185,5 +186,21 @@
     margin-left: 10px;
     color: #333;
   }  
+
+  .delete-button {
+    background-color: #e74c3c;
+    color: white;
+    width: 100px;
+    border: none;
+    padding: 10px 0;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s;
+  }
+  
+  .delete-button:hover {
+    background-color: #c0392b;
+  }
 
 } 
