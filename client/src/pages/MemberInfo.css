@@ -84,6 +84,55 @@
   opacity: 0.7;
 }
 
+.role-select {
+  padding: 4px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+  font-size: 14px;
+  width: 90px;
+}
+
+.role-select.admin {
+  background-color: #ff4444;
+  color: white;
+  border-color: #cc0000;
+}
+
+.role-select.regular {
+  background-color: #4CAF50;
+  color: white;
+  border-color: #45a049;
+}
+
+.role-select.guest {
+  background-color: #666;
+  color: white;
+  border-color: #444;
+}
+
+.role-select:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+
+.role-select option[value="admin"] {
+  background-color: #ff4444;
+  color: white;
+}
+
+.role-select option[value="regular"] {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.role-select option[value="guest"] {
+  background-color: #666;
+  color: white;
+}
 /* 반응형 스타일 */
 @media (max-width: 768px) {
   .member-info-container {
@@ -110,23 +159,33 @@
 
   .admin-toggle-button {
     padding: 2px 2px;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
   }
+  .role-select {
+    padding: 4px 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+    font-size: 0.67rem;
+    width: 80px;
+  
+  }    
 }
 
 @media (max-width: 576px) {
   .member-info-container {
-    padding: 10px;
+    padding: 2px;
     margin-top: -10px;
   }
   
   .member-table {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
   }
   
   .member-table th,
   .member-table td {
-    padding: 1px 10px;
+    padding: 1px 1px;
     line-height: 1.1;
   }
 
@@ -172,120 +231,21 @@
     padding: 4px 5px;
     font-size: 0.75rem;
   }
-} 
-.role-select {
-  padding: 4px 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background-color: white;
-  cursor: pointer;
-  font-size: 14px;
-  width: 100px;
-}
 
-.role-select.admin {
-  background-color: #ff4444;
-  color: white;
-  border-color: #cc0000;
-}
-
-.role-select.regular {
-  background-color: #4CAF50;
-  color: white;
-  border-color: #45a049;
-}
-
-.role-select.guest {
-  background-color: #666;
-  color: white;
-  border-color: #444;
-}
-
-.role-select:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
-  opacity: 0.7;
-}
-
-
-.role-select option[value="admin"] {
-  background-color: #ff4444;
-  color: white;
-}
-
-.role-select option[value="regular"] {
-  background-color: #4CAF50;
-  color: white;
-}
-
-.role-select option[value="guest"] {
-  background-color: #666;
-  color: white;
-}
-
-/* 선택된 상태에 따른 select 박스 스타일 */
-.role-select.admin {
-  background-color: #ff4444;
-  color: white;
-  border-color: #cc0000;
-  text-align: center;
-  width: 95%;
-  font-size: 11px;;
-}
-
-.role-select.regular {
-  background-color: #4CAF50;
-  color: white;
-  border-color: #45a049;
-  text-align: center;
-  width: 95%;
-  font-size: 11px;;
-}
-
-.role-select.guest {
-  background-color: #666;
-  color: white;
-  border-color: #444;
-  text-align: center;
-  width: 95%;
-  font-size: 11px;;
-}
-
-/* select 박스가 열렸을 때의 스타일 */
-.role-select:focus {
-  outline: none;
-  box-shadow: 0 0 5px rgba(0,0,0,0.2);
-}
-
-/* select 박스의 화살표 커스터마이징 */
-.role-select {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
-  background-repeat: no-repeat;
-  background-position: right 15px center;
-  background-size: 16px;
-  padding-right: 25px;
-}
-
-/* Firefox에서 화살표 숨기기 */
-.role-select::-ms-expand {
-  display: none;
-}
-
-/* 모바일 대응 */
-/*
-@media (max-width: 576px) {
   .role-select {
-    width: 100px;
-    margin-left: -30px;
-    padding: 2px 0;
-    background-size: 12px;
-    background-position: right 6px center;
-  }
-}
-  */
+    padding: 4px 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+    font-size: 0.6rem;
+    width: 68px;
+  
+  }  
+} 
+
+
+
 
 .role-display.admin {
   background-color: #e3f2fd;
@@ -319,17 +279,3 @@ select:focus {
   border-color: #2196f3;
   box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
 }
-
-/*
-@media screen and (max-width: 768px) {
-  select {
-    width: 100%;
-    max-width: 200px;
-  }
-  
-  .role-display {
-    display: inline-block;
-    margin: 2px 0;
-  }
-}
-*/
