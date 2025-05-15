@@ -175,14 +175,7 @@ function MainPage() {
   return (
     <div className="main-page">
       <h1 className="welcome-title">DDF 드럼 놀이터</h1>
-      <div className="intro-section">
-        <div className="logo-container">
-          <img src={ddfLogo} alt="DDF Logo" className="ddf-logo" />
-          <div className="logo-text">
-            <p>{/* 드럼 놀이터 */}</p>
-            <p>모든 연령 드럼 레슨, 체험</p>
-            <p>피아노/작곡, 연습실대여</p>
-            {isMobile && (
+      {isMobile && (
               <div className="contact-icons">
                 <a href={adminPhone ? `tel:${adminPhone}` : '#'} className="contact-icon">
                   <i className="fas fa-phone"></i> <br /> 전화
@@ -195,15 +188,41 @@ function MainPage() {
                 </Link>
               </div>
             )}
+      <div class="drum-playground-intro">
+            <h2>🥁 드럼의 즐거움, "드럼놀이터"에서 함께 만들어요! 🥁</h2>
+            <p><strong>두근거리는 비트, 가슴 뛰는 리듬!</strong> "드럼놀이터"는 여러분의 음악적 열정을 마음껏 펼칠 수 있는 드럼 레슨 및 연습 공간으로{' '} 
+            <strong>초보자부터 숙련자까지</strong>, <strong>어린이부터 성인까지</strong>, <strong>개개인의 수준과 목표에 맞춘 집중 코칭</strong>을 제공합니다.</p>
+</div>
+      <div className="intro-section">
+
+
+
+        
+        <div className="logo-container">
+          <img src={ddfLogo} alt="DDF Logo" className="ddf-logo" />
+          <div className="logo-text">
+            <p>드럼 놀이터</p>
+            <p>모든 연령 드럼 레슨, 체험</p>
+            <p>피아노/작곡, 연습실대여</p>
+
           </div>
         </div>
        
         <div className="intro-text">
-        <div class="drum-playground-intro">
-            <h2>🥁 드럼의 즐거움, "드럼놀이터"에서 함께 만들어요! 🥁</h2>
-            <p><strong>두근거리는 비트, 가슴 뛰는 리듬!</strong> "드럼놀이터"는 여러분의 음악적 열정을 마음껏 펼칠 수 있는 드럼 레슨 및 연습 공간으로{' '} 
-            <strong>초보자부터 숙련자까지</strong>, <strong>어린이부터 성인까지</strong>, <strong>개개인의 수준과 목표에 맞춘 집중 코칭</strong>을 제공합니다.</p>
-</div>        </div>
+          <p>
+          <div class="drum-playground-recommendation">
+
+              <h4>이런 분들께 "드럼놀이터"를 추천합니다!</h4>
+              <ul>
+                <li>드럼을 처음 시작하고 싶으신 분</li>
+                <li>취미로 드럼 연주를 즐기고 싶으신 분</li>
+                <li>실력 향상을 위해 전문적인 코칭을 받고 싶으신 분</li>
+                <li>스트레스를 해소하고 음악적인 즐거움을 느끼고 싶으신 분</li>
+              </ul>
+          </div>
+
+          </p>
+        </div>
       </div>
 
       <div className="board-section">
