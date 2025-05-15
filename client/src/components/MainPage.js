@@ -201,7 +201,7 @@ function MainPage() {
         <div className="intro-text">
         <div class="drum-playground-intro">
             <h2>🥁 드럼의 즐거움, "드럼놀이터"에서 함께 만들어요! 🥁</h2>
-            <p><strong>두근거리는 비트, 가슴 뛰는 리듬!</strong> "드럼놀이터"는 여러분의 음악적 열정을 마음껏 펼칠 수 있는 드럼 레슨 및 연습 공간으로{' '} 
+            <p><strong>춤추는 비트, 가슴 뛰는 리듬!</strong> "드럼놀이터"는 여러분의 음악적 열정을 마음껏 펼칠 수 있는 레슨 및 연습 공간으로{' '} 
             <strong>초보자부터 숙련자까지</strong>, <strong>어린이부터 성인까지</strong>, <strong>개개인의 수준과 목표에 맞춘 집중 코칭</strong>을 제공합니다.</p>
 </div>        </div>
       </div>
