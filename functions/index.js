@@ -7,7 +7,7 @@ admin.initializeApp();
 
 // Firebase Functions config에서 이메일 정보 가져오기
 const emailConfig = functions.config().email;
-const adminMail = ['mindfree4u@daum.net', 'jsdtoner@naver.com', 'ddfoo@naver.com'];
+const adminMail = ['jsdtoner@naver.com', 'ddfoo@naver.com'];
 
 const getTransporter = () => nodemailer.createTransport({
   host: 'smtp.naver.com',

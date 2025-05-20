@@ -246,6 +246,18 @@ function ReservationForm() {
       e.stopPropagation();
     }
 
+    // 현재 시간과 선택된 시간 비교
+    const now = new Date();
+    const [hours, minutes] = timeSlot.split(':').map(Number);
+    const selectedDateTime = new Date(selectedDate);
+    selectedDateTime.setHours(hours, minutes, 0, 0);
+    
+    // 지나간 시간인 경우
+    if (now > selectedDateTime) {
+      alert('지난 일정입니다');
+      return;
+    }
+
     // 모바일에서 터치 이벤트인 경우, 스와이프나 드래그가 아닌 정확한 터치인지 확인
     if (e && e.type === 'touchend') {
       const touch = e.changedTouches[0];
@@ -338,6 +350,15 @@ function ReservationForm() {
     }
 
     if (!selectedTimeSlot || !selectedRoom) return;
+
+    // Room A는 레슨만 가능하도록 체크
+    if (selectedRoom === 'Room A' && type === '연습') {
+      alert('Room A는 레슨 예약만 가능합니다.');
+      setShowTypeButtons(false);
+      setSelectedTimeSlot(null);
+      setSelectedRoom(null);
+      return;
+    }
 
     // 관리자는 예약 횟수 제한 없음
     console.log('isAdmin===================>', isAdmin);
@@ -609,13 +630,15 @@ function ReservationForm() {
           >
             레슨
           </button>
-          <button 
-            className="type-button practice"
-            onClick={(e) => handleTypeSelection('연습', e)}
-            onTouchEnd={(e) => handleTypeSelection('연습', e)}
-          >
-            연습
-          </button>
+          {room !== 'Room A' && (
+            <button 
+              className="type-button practice"
+              onClick={(e) => handleTypeSelection('연습', e)}
+              onTouchEnd={(e) => handleTypeSelection('연습', e)}
+            >
+              연습
+            </button>
+          )}
         </div>
       );
     }
@@ -829,25 +852,27 @@ function ReservationForm() {
                         >
                           레슨
                         </button>
-                        <button 
-                          className="type-button practice"
-                          onTouchStart={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                          }}
-                          onTouchEnd={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            handleTypeSelection('연습', e);
-                          }}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            handleTypeSelection('연습', e);
-                          }}
-                        >
-                          연습
-                        </button>
+                        {room !== 'Room A' && (
+                          <button 
+                            className="type-button practice"
+                            onTouchStart={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                            }}
+                            onTouchEnd={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              handleTypeSelection('연습', e);
+                            }}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              handleTypeSelection('연습', e);
+                            }}
+                          >
+                            연습
+                          </button>
+                        )}
                       </div>
                     ) : (
                       getReservationText(timeSlot, room)

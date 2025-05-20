@@ -416,11 +416,11 @@ input[type="date"]::-ms-expand {
 }
 
 .type-button.lesson {
-  background-color: #3498db;
+  background-color: #f393c3;
 }
 
 .type-button.lesson:hover {
-  background-color: #2980b9;
+  background-color: #f173b2;
 }
 
 .type-button.practice {
