@@ -26,6 +26,8 @@ import PaymentSuccess from './pages/PaymentSuccess';
 import PaymentSettings from './pages/PaymentSettings';
 import PaymentHistory from './pages/PaymentHistory';
 import ResetPassword from './components/ResetPassword';
+import SendKakao from './pages/SendKakao';
+import ReservationStats from './pages/ReservationStats';
 import './App.css';
 
 const PaymentPage = lazy(() => import('./pages/PaymentPage'));
@@ -136,6 +138,8 @@ function App() {
             ) : <Navigate to="/login" />} />
             <Route path="/payment/success" element={user ? <PaymentSuccess /> : <Navigate to="/login" />} />
             <Route path="/admin/payment-history" element={user && isAdmin ? <PaymentHistory /> : <Navigate to="/" />} />
+            <Route path="/admin/send-kakao" element={user && isAdmin ? <SendKakao /> : <Navigate to="/" />} />
+            <Route path="/admin/reservation-stats" element={user && isAdmin ? <ReservationStats /> : <Navigate to="/" />} />
             <Route path="/" element={<Navigate to="/main" replace />} />
           </Routes>
           <Footer />

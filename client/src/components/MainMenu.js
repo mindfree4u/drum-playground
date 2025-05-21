@@ -180,6 +180,8 @@ function MainMenu({ isAdmin }) {
                   <li><Link to="/member-info" onClick={() => handleAdminMenuClick('/member-info')}>회원관리</Link></li>
                   <li><Link to="/payment-settings" onClick={() => handleAdminMenuClick('/payment-settings')}>결제비용 설정</Link></li>
                   <li><Link to="/admin/payment-history" onClick={() => handleAdminMenuClick('/admin/payment-history')}>결제내역 보기</Link></li>
+                  <li><Link to="/admin/reservation-stats" onClick={() => handleAdminMenuClick('/admin/ReservationStats')}>예약 통계</Link></li>
+                  <li><Link to="/admin/send-kakao" onClick={() => handleAdminMenuClick('/admin/send-kakao')}>카톡 보내기</Link></li>
                 </ul>
               </li>
             )}

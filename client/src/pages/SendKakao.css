@@ -1,0 +1,77 @@
+.send-kakao-container {
+    max-width: 500px;
+    margin: 30px auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 24px 20px 20px 20px;
+  }
+  
+  .send-kakao-container h2 {
+    text-align: center;
+    margin-bottom: 18px;
+    color: #333;
+  }
+  
+  .member-list-section {
+    margin-bottom: 18px;
+  }
+
+  .member-list-section label {
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: inline-block;
+  }
+
+  .member-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 180px;
+    overflow-y: auto;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    background: #fafbfc;
+  }
+
+  .member-list li {
+    padding: 6px 10px;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 15px;
+  }
+
+  .member-list li:last-child {
+    border-bottom: none;
+  }
+
+  .message-section {
+    margin-bottom: 18px;
+  }
+
+  .message-section textarea {
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 15px;
+    resize: vertical;
+    min-height: 80px;
+  }
+
+  .send-btn {
+    width: 100%;
+    padding: 12px 0;
+    background: #03c75a;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .send-btn:disabled {
+    background: #b2dfb2;
+    cursor: not-allowed;
+  }
