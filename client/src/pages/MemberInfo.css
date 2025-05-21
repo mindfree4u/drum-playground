@@ -6,14 +6,14 @@
 }
 
 .member-info-container h1 {
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   color: #333;
 }
 
 .member-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
+  margin-top: 0px;
   background-color: white;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
@@ -133,6 +133,49 @@
   background-color: #666;
   color: white;
 }
+
+.role-display.admin {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+
+.role-display.member {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.role-display.guest {
+  background-color: #fff3e0;
+  color: #e65100;
+}
+
+select {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+select:hover {
+  border-color: #999;
+}
+
+select:focus {
+  outline: none;
+  border-color: #2196f3;
+  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
+}
+
+.member-count {
+  text-align: right;
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 5px;
+  margin-right: 2px;
+}
+
+
 /* 반응형 스타일 */
 @media (max-width: 768px) {
   .member-info-container {
@@ -143,7 +186,7 @@
   
   .member-info-container h1 {
     font-size: 1.4rem;
-    margin-bottom: 15px;
+    margin-bottom: -5px;
     /* padding-left: 5px; */
   }
   .member-table {
@@ -171,6 +214,13 @@
     width: 80px;
   
   }    
+  .member-count {
+    text-align: right;
+    font-size: 1.0rem;
+    color: #555;
+    margin-bottom: 5px;
+    margin-right: 2px;
+  }
 }
 
 @media (max-width: 576px) {
@@ -191,10 +241,16 @@
 
   .member-info-container h1 {
     font-size: 1.0rem;
-    margin-bottom: 15px;
+    margin-bottom: -10px;
     /* padding-left: 5px; */
   }
-
+  .member-count {
+    text-align: right;
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 5px;
+    margin-right: 2px;
+  }
   /* 각 열의 너비 조정 */
   .member-table th:nth-child(1),
   .member-table td:nth-child(1) { /* 아이디 */
@@ -240,42 +296,5 @@
     cursor: pointer;
     font-size: 0.6rem;
     width: 64px;
-  
   }  
 } 
-
-
-
-
-.role-display.admin {
-  background-color: #e3f2fd;
-  color: #1976d2;
-}
-
-.role-display.member {
-  background-color: #e8f5e9;
-  color: #2e7d32;
-}
-
-.role-display.guest {
-  background-color: #fff3e0;
-  color: #e65100;
-}
-
-select {
-  padding: 6px 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
-  transition: all 0.2s ease;
-}
-
-select:hover {
-  border-color: #999;
-}
-
-select:focus {
-  outline: none;
-  border-color: #2196f3;
-  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
-}

@@ -77,6 +77,7 @@ const MemberInfo = () => {
   return (
     <div className="member-info-container">
       <h1>회원 정보</h1>
+      <div className="member-count">총 {members.length}명</div>
       <table className="member-table">
         <thead>
           <tr>
