@@ -1,58 +1,65 @@
-  .reservation-stats-container {
-    max-width: 800px;
-    margin: 30px auto;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    padding: 24px 20px 20px 20px;
-  }
-  
-  .reservation-stats-container h2 {
-    text-align: center;
-    margin-bottom: 24px;
-    color: #333;
-  }
-  
-  .stats-table-section {
-    margin-bottom: 32px;
-  }
-  
-  .stats-table-section h3 {
-    margin-bottom: 10px;
-    color: #444;
-  }
-  
-  .stats-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #fafbfc;
-    border-radius: 6px;
-    overflow: hidden;
-  }
-  
-  .stats-table th, .stats-table td {
-    border: 1px solid #e0e0e0;
-    padding: 8px 0;
-    text-align: center;
-    font-size: 15px;
-  }
-  
-  .stats-table th {
-    background: #f5f5f5;
-    font-weight: 600;
-    color: #222;
-  }
-  
-  .stats-table tr:nth-child(even) {
-    background: #f9f9f9;
-  }
-  
-  .stats-loading {
-    text-align: center;
-    color: #888;
-    font-size: 1.1rem;
-    margin: 30px 0;
-  }
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+.reservation-stats-container {
+  max-width: 800px;
+  margin: 30px auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 24px 20px 20px 20px;
+}
+
+.reservation-stats-container h2 {
+  text-align: center;
+  margin-bottom: 24px;
+  color: #333;
+}
+
+.stats-table-section {
+  margin-bottom: 32px;
+}
+
+.stats-table-section h3 {
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fafbfc;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.stats-table th, .stats-table td {
+  border: 1px solid #e0e0e0;
+  padding: 8px 0;
+  text-align: center;
+  font-size: 15px;
+}
+
+.stats-table th {
+  background: #f5f5f5;
+  font-weight: 600;
+  color: #222;
+}
+
+.stats-table tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+.stats-loading {
+  text-align: center;
+  color: #888;
+  font-size: 1.1rem;
+  margin: 30px 0;
+}
 
 .stats-container {
   width: 100%;
@@ -157,24 +164,35 @@
   border: 1px solid rgba(0, 0, 0, 0.23);
 }
 
-
-
 .MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-formControl.month-selector.custom-select.Mui-focused {
   border-color: #1976d2;
   border-width: 2px;
 }
 
+.month-select-input {
+  padding: 8px 14px;
+  font-size: 14px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 4px;
+}
+
 @media (max-width: 768px) {
   .stats-container.MuiBox-root.css-0 {
     width: 100%;
-    padding: 6px 5px;
-    margin-left: 20px;
+    margin-left: -20px;
+    box-shadow: none;
+    background-color: transparent;
+    padding: 20px;
   }
 
   .stats-tab-panel.MuiBox-root.css-0 {
     width: 100%;
-    padding: 26px 0;
-    margin-left: -30px;
+    padding-top: 26px;
+    padding-left: 0;
+    margin-left: -40px;
   }
 
   .custom-tab {
@@ -193,6 +211,8 @@
     height: 40px !important;
     display: flex;
     padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     align-items: center;
   }
 
@@ -204,7 +224,6 @@
   }
 
   .custom-input {
-    margin-top: -10px;
     font-size: 15px !important;
     padding: 0px 20px !important;
     height: 30px !important;
@@ -241,8 +260,35 @@
     width: 100%;
     padding: 0px 0;
   }
-}
-  /* Hide scroll buttons in tabs */
-  .MuiTabs-scrollButtons {
-    display: none !important;
+
+  .content-wrapper {
+    padding: 15px;
+    margin: 0 -15px;
+    border-radius: 0;
   }
+
+  .month-select-input {
+    font-size: 15px;
+    padding: 0px 20px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.content-wrapper {
+  width: 100%;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.stats-container.MuiBox-root.css-0 {
+  width: 96%;
+  padding: 34px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+}

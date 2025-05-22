@@ -403,7 +403,7 @@ const ReservationStats = () => {
             onChange={handleMonthChange}
             className="month-selector custom-select"
             inputProps={{
-              className: "month-input-select custom-input"
+              className: 'month-select-input'
             }}
           >
             {months.map((month) => (
