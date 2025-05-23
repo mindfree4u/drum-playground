@@ -7,6 +7,7 @@ import { db, functions } from '../firebase';
 import { getDocs, query, collection, where } from 'firebase/firestore';
 import './Login.css';
 import { httpsCallable } from 'firebase/functions';
+import { saveFcmTokenToDatabase } from '../utils/saveFcmToken';
 
 function Login() {
   const [userId, setUserId] = useState('');
@@ -44,6 +45,13 @@ function Login() {
       // Now sign in with email and password
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
 
+      // 로그인 성공 후 FCM 토큰 저장
+      try {
+        await saveFcmTokenToDatabase();
+      } catch (e) {
+        console.error('FCM 토큰 저장 실패:', e);
+        // 에러가 나도 로그인은 계속 진행
+      }
       // 로그인 성공 후 저장된 리다이렉트 경로 확인
       const redirectPath = localStorage.getItem('redirectAfterLogin');
       

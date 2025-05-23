@@ -33,7 +33,6 @@ function ReservationForm() {
   const [showCancelModal, setShowCancelModal] = useState(false);
   const [pendingCancel, setPendingCancel] = useState(null);
 
-  const timeSlots = ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00'];
   const rooms = ['Room A', 'Room B', 'Room C', 'Room E'];
 
   useEffect(() => {
@@ -740,6 +739,16 @@ function ReservationForm() {
     setPendingCancel(null);
   };
 
+  const getTimeSlots = (date) => {
+    const day = date.getDay(); // 0:일, 6:토
+    if (day === 0 || day === 6) {
+      // 토,일: 10~17시
+      return ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'];
+    }
+    // 평일: 10~20시
+    return ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00'];
+  };
+
   return (
     <div className="reservation-container">
       <h2>놀이터 예약</h2>
@@ -809,7 +818,7 @@ function ReservationForm() {
             </tr>
           </thead>
           <tbody>
-            {timeSlots.map(timeSlot => (
+            {getTimeSlots(selectedDate).map(timeSlot => (
               <tr key={timeSlot}>
                 <td>{timeSlot}</td>
                 {rooms.map(room => (

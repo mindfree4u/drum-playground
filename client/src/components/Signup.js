@@ -6,6 +6,7 @@ import { createUserWithEmailAndPassword, updateProfile, getAuth } from 'firebase
 import { db } from '../firebase';
 import { doc, setDoc, getDocs, query, collection, where, Timestamp, serverTimestamp } from 'firebase/firestore';
 import './Signup.css';
+import { saveFcmTokenToDatabase } from '../utils/saveFcmToken';
 
 function Signup() {
   const [userId, setUserId] = useState('');
@@ -148,6 +149,9 @@ function Signup() {
       await updateProfile(user, {
         displayName: name
       });
+
+      // 회원가입 성공 후 FCM 토큰 저장
+      await saveFcmTokenToDatabase();
 
       alert('회원가입이 완료되었습니다.');
       navigate('/login');

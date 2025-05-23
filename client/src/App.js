@@ -28,6 +28,7 @@ import PaymentHistory from './pages/PaymentHistory';
 import ResetPassword from './components/ResetPassword';
 import SendKakao from './pages/SendKakao';
 import ReservationStats from './pages/ReservationStats';
+import PushNotification from './pages/PushNotification';
 import './App.css';
 
 const PaymentPage = lazy(() => import('./pages/PaymentPage'));
@@ -140,6 +141,7 @@ function App() {
             <Route path="/admin/payment-history" element={user && isAdmin ? <PaymentHistory /> : <Navigate to="/" />} />
             <Route path="/admin/send-kakao" element={user && isAdmin ? <SendKakao /> : <Navigate to="/" />} />
             <Route path="/admin/reservation-stats" element={user && isAdmin ? <ReservationStats /> : <Navigate to="/" />} />
+            <Route path="/admin/push-notification" element={<PushNotification />} />
             <Route path="/" element={<Navigate to="/main" replace />} />
           </Routes>
           <Footer />
