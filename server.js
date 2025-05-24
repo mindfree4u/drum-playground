@@ -38,6 +38,7 @@ app.post('/api/send-push', async (req, res) => {
     // FCM은 최대 500개의 토큰까지 한 번에 발송 가능
     const response = await admin.messaging().sendToDevice(tokens, payload);
     res.json({ success: true, response });
+    console.log('FCM send success==================');
   } catch (error) {
     console.error('FCM send error:', error);
     res.status(500).json({ error: 'Failed to send push notification' });
