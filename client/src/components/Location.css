@@ -1,0 +1,225 @@
+.location-container {
+  padding: 20px 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: -10px;
+  /* padding-top: 10px; */
+}
+
+.location-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.location-title {
+  margin: 0 0 10px 0;
+  font-size: 20px;
+  color: #333;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+} 
+
+.map {
+  width: 100%;
+  height: 100%;
+  min-height: 495px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.map-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.map-error {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 0, 0, 0.1);
+  color: #ff0000;
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.info-section {
+  width: 100%;
+}
+
+.address-info {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.address-info h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.address-info p {
+  margin: 10px 0;
+  line-height: 1.5;
+}
+
+.transport-section {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.transport-section h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.transport-info h4 {
+  color: #555;
+  margin: 15px 0 10px;
+}
+
+.transport-info ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.transport-info li {
+  margin: 5px 0;
+  padding-left: 20px;
+  position: relative;
+}
+
+.transport-info li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #666;
+}
+
+.find-way-btn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #FEE500;
+  color: #000;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.find-way-btn:hover {
+  background-color: #FFD700;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .location-content {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .map {
+    flex: 2;
+    width: 100%;
+    min-width: 400px;
+    /* max-width: 600px; */
+  }
+
+  .info-section {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .transport-section {
+    flex-grow: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .location-container {
+    padding: 10px;
+    padding-top: 5px;
+  }
+
+  .location-content {
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .location-title {
+    margin: 0 0 10px 0;
+    margin-top: -4px;
+    margin-bottom: -2px;
+    padding-top: 4px;
+    padding-bottom: 10px;
+    font-size: 22px;
+    color: #333;
+    text-align: center;
+    background: rgba(241, 238, 238, 0.9);
+  } 
+
+  .map {
+    height: 350px;
+    width: 100%;
+    min-width: unset;
+  }
+
+  .info-section {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .address-info {
+    font-size: 1.0rem;
+    margin-top: -10px;
+    margin-bottom: 10px;
+  }
+
+  .address-info h2 {
+    font-size: 1.0rem;
+  }
+  .transport-section h3 {
+    font-size: 1.3rem;
+  }
+  .find-way-btn {
+    margin-top: 10px;
+    margin-bottom: -10px;
+    padding: 10px 20px;
+    background-color: #FEE500;
+    color: #000;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+  }
+  
+  .find-way-btn:hover {
+    background-color: #FFD700;
+  }
+}

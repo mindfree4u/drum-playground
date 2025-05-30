@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/logo192.png" />
+    
+    <!-- 기본 뷰포트 설정 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+    
+    <!-- 테마 색상 -->
+    <meta name="theme-color" content="#000000" />
+    
+    <!-- 카카오톡 인앱 브라우저 호환성 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="format-detection" content="telephone=no, email=no, address=no" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-status-bar-style" content="black-translucent" />
+    
+    <!-- iOS Safari 설정 -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="드럼놀이터" />
+    <link rel="apple-touch-startup-image" href="%PUBLIC_URL%/ddf_background.jpeg" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    
+    <!-- Windows Phone 설정 -->
+    <meta name="msapplication-TileColor" content="#000000" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="msapplication-config" content="none" />
+    <meta name="msapplication-window" content="width=device-width;height=device-height" />
+    
+    <!-- 기본 메타 정보 -->
+    <meta name="application-name" content="드럼놀이터" />
+    <meta name="description" content="드럼놀이터 - 드럼 연습과 레슨을 위한 최고의 공간" />
+    <meta name="keywords" content="드럼, 드럼연습, 드럼레슨, 드럼놀이터, 음악, 연습실" />
+    <meta name="author" content="드럼놀이터" />
+    
+    <!-- Open Graph 메타 태그 (카카오톡 링크 미리보기용) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="드럼놀이터" />
+    <meta property="og:description" content="드럼놀이터 - 드럼 연습과 레슨을 위한 최고의 공간" />
+    <meta property="og:image" content="https://ddfoo.co.kr/logo192.png" />
+    <meta property="og:url" content="https://ddfoo.co.kr" />
+    <meta property="og:site_name" content="드럼놀이터" />
+    <meta property="og:locale" content="ko_KR" />
+    
+    <!-- Twitter Card 메타 태그 -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="드럼놀이터" />
+    <meta name="twitter:description" content="드럼놀이터 - 드럼 연습과 레슨을 위한 최고의 공간" />
+    <meta name="twitter:image" content="https://ddfoo.co.kr/logo192.png" />
+    
+    <!-- 카카오톡 특화 메타 태그 -->
+    <meta property="kakao:title" content="드럼놀이터" />
+    <meta property="kakao:description" content="드럼놀이터 - 드럼 연습과 레슨을 위한 최고의 공간" />
+    <meta property="kakao:image" content="https://ddfoo.co.kr/logo192.png" />
+    
+    <!-- PWA 매니페스트 -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    
+    <!-- 페이지 제목 -->
+    <title>드럼놀이터</title>
+    
+    <!-- 카카오 SDK -->
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    
+    <style>
+      /* 카카오톡 인앱 브라우저 최적화 */
+      html, body {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+      }
+      
+      /* 스크롤 최적화 */
+      body {
+        -webkit-overflow-scrolling: touch;
+        overflow-scrolling: touch;
+      }
+      
+      /* 입력 필드 줌 방지 (iOS) */
+      input, textarea, select {
+        font-size: 16px !important;
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <!-- <div id="splash-screen"></div> 삭제 -->
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+    <!-- 카카오맵 API 스크립트 -->
+    <!-- <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=26d8640fa64f99a40fc037fb0e5bb873&libraries=services"></script> -->
+    <script>
+      // (splash 관련 JS 전체 삭제)
+    </script>
+    
+    <!-- 카카오톡 인앱 브라우저 감지 및 최적화 스크립트 -->
+    <script>
+      // 카카오톡 인앱 브라우저 감지
+      function isKakaoTalkInApp() {
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        return /KAKAOTALK/i.test(userAgent);
+      }
+      
+      // 카카오톡 인앱 브라우저 최적화
+      if (isKakaoTalkInApp()) {
+        console.log('카카오톡 인앱 브라우저에서 실행 중');
+        
+        // 뒤로가기 버튼 처리
+        window.addEventListener('popstate', function(event) {
+          // 카카오톡 인앱에서 뒤로가기 시 특별한 처리가 필요한 경우
+        });
+        
+        // 터치 이벤트 최적화
+        document.addEventListener('touchstart', function() {}, { passive: true });
+        document.addEventListener('touchmove', function() {}, { passive: true });
+      }
+      
+      // 페이지 로드 완료 시 카카오톡에 알림
+      window.addEventListener('load', function() {
+        if (isKakaoTalkInApp()) {
+          // 카카오톡 인앱 브라우저에서 페이지 로드 완료
+          console.log('카카오톡 인앱 브라우저에서 페이지 로드 완료');
+        }
+      });
+    </script>
+  </body>
+</html>

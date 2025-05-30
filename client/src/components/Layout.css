@@ -1,0 +1,12 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  padding: 2px;
+  min-height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: column;
+} 

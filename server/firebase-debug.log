@@ -1,0 +1,157 @@
+[debug] [2025-05-03T03:43:08.391Z] ----------------------------------------------------------------------
+[debug] [2025-05-03T03:43:08.394Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\GB-AMD-006\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js functions:shell
+[debug] [2025-05-03T03:43:08.394Z] CLI Version:   14.2.2
+[debug] [2025-05-03T03:43:08.394Z] Platform:      win32
+[debug] [2025-05-03T03:43:08.394Z] Node Version:  v22.15.0
+[debug] [2025-05-03T03:43:08.395Z] Time:          Sat May 03 2025 12:43:08 GMT+0900 (대한민국 표준시)
+[debug] [2025-05-03T03:43:08.395Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-05-03T03:43:08.576Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-05-03T03:43:08.576Z] > authorizing via signed-in user (mindfree4u2@gmail.com)
+[debug] [2025-05-03T03:43:08.576Z] [iam] checking project drum-playground for permissions ["firebase.projects.get"]
+[debug] [2025-05-03T03:43:08.577Z] Checked if tokens are valid: false, expires at: 1746234972414
+[debug] [2025-05-03T03:43:08.578Z] Checked if tokens are valid: false, expires at: 1746234972414
+[debug] [2025-05-03T03:43:08.578Z] > refreshing access token with scopes: []
+[debug] [2025-05-03T03:43:08.579Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-05-03T03:43:08.579Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-05-03T03:43:08.881Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-05-03T03:43:08.881Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-05-03T03:43:08.892Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/drum-playground:testIamPermissions [none]
+[debug] [2025-05-03T03:43:08.892Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/drum-playground:testIamPermissions x-goog-quota-user=projects/drum-playground
+[debug] [2025-05-03T03:43:08.892Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/drum-playground:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2025-05-03T03:43:09.830Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/drum-playground:testIamPermissions 200
+[debug] [2025-05-03T03:43:09.830Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/drum-playground:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2025-05-03T03:43:09.847Z] [functions] Functions Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2025-05-03T03:43:09.861Z] defaultcredentials: writing to file C:\Users\GB-AMD-006\AppData\Roaming\firebase\mindfree4u2_gmail_com_application_default_credentials.json
+[debug] [2025-05-03T03:43:09.863Z] DEBUG: Setting GAC to C:\Users\GB-AMD-006\AppData\Roaming\firebase\mindfree4u2_gmail_com_application_default_credentials.json
+[debug] [2025-05-03T03:43:09.864Z] Checked if tokens are valid: true, expires at: 1746247387881
+[debug] [2025-05-03T03:43:09.864Z] Checked if tokens are valid: true, expires at: 1746247387881
+[debug] [2025-05-03T03:43:09.864Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/drum-playground/adminSdkConfig [none]
+[debug] [2025-05-03T03:43:10.873Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/drum-playground/adminSdkConfig 200
+[debug] [2025-05-03T03:43:10.874Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/drum-playground/adminSdkConfig {"projectId":"drum-playground","storageBucket":"drum-playground.firebasestorage.app"}
+[debug] [2025-05-03T03:43:10.885Z] [functions] Watching "D:\Study\Cursor\drum-playground\functions" for Cloud Functions...
+[debug] [2025-05-03T03:43:10.888Z] Validating nodejs source
+[debug] [2025-05-03T03:43:12.107Z] > [functions] package.json contents: {
+  "name": "functions",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "firebase-admin": "^13.3.0",
+    "firebase-functions": "^6.3.2",
+    "nodemailer": "^6.10.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.25.1",
+    "eslint": "^9.25.1",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^16.0.0"
+  },
+  "description": ""
+}
+[debug] [2025-05-03T03:43:12.108Z] Building nodejs source
+[debug] [2025-05-03T03:43:12.108Z] Failed to find version of module node: reached end of search path D:\Study\Cursor\drum-playground\functions\node_modules
+[warn] !  functions: Your requested "node" version "18" doesn't match your global version "22". Using node@22 from host. 
+[debug] [2025-05-03T03:43:12.111Z] Could not find functions.yaml. Must use http discovery
+[debug] [2025-05-03T03:43:12.118Z] Found firebase-functions binary at 'D:\Study\Cursor\drum-playground\functions\node_modules\.bin\firebase-functions'
+[info] Serving at port 8409
+
+[debug] [2025-05-03T03:43:16.524Z] Got response from /__/functions.yaml {"endpoints":{"sendReservationMail":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","secretEnvironmentVariables":[{"key":"NAVER_EMAIL"},{"key":"NAVER_PASSWORD"}],"labels":{},"eventTrigger":{"eventType":"google.cloud.firestore.document.v1.created","eventFilters":{"database":"(default)","namespace":"(default)"},"eventFilterPathPatterns":{"document":"reservations/{reservationId}"},"retry":false},"entryPoint":"sendReservationMail"},"sendCancelMail":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","secretEnvironmentVariables":[{"key":"NAVER_EMAIL"},{"key":"NAVER_PASSWORD"}],"labels":{},"eventTrigger":{"eventType":"google.cloud.firestore.document.v1.deleted","eventFilters":{"database":"(default)","namespace":"(default)"},"eventFilterPathPatterns":{"document":"reservations/{reservationId}"},"retry":false},"entryPoint":"sendCancelMail"},"savePlayRecord":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"callableTrigger":{},"entryPoint":"savePlayRecord"},"getPlayRecords":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"callableTrigger":{},"entryPoint":"getPlayRecords"},"calculateStats":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"callableTrigger":{},"entryPoint":"calculateStats"},"onNewUserSignup":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","secretEnvironmentVariables":[{"key":"NAVER_EMAIL"},{"key":"NAVER_PASSWORD"}],"labels":{},"eventTrigger":{"eventType":"google.cloud.firestore.document.v1.created","eventFilters":{"database":"(default)","namespace":"(default)"},"eventFilterPathPatterns":{"document":"users/{userId}"},"retry":false},"entryPoint":"onNewUserSignup"},"sendPaymentNotification":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","secretEnvironmentVariables":[{"key":"NAVER_EMAIL"},{"key":"NAVER_PASSWORD"}],"labels":{},"callableTrigger":{},"entryPoint":"sendPaymentNotification"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{},"params":[{"type":"secret","name":"NAVER_EMAIL"},{"type":"secret","name":"NAVER_PASSWORD"}]}
+[debug] [2025-05-03T03:43:20.572Z] [functions] Loaded functions definitions from source: sendReservationMail, sendCancelMail, savePlayRecord, getPlayRecords, calculateStats, onNewUserSignup, sendPaymentNotification.
+[debug] [2025-05-03T03:43:20.573Z] [functions[us-central1-sendReservationMail]] function ignored because the firestore emulator does not exist or is not running.
+[debug] [2025-05-03T03:43:20.573Z] [functions[us-central1-sendCancelMail]] function ignored because the firestore emulator does not exist or is not running.
+[debug] [2025-05-03T03:43:20.573Z] [functions[us-central1-savePlayRecord]] http function initialized (http://127.0.0.1:5000/drum-playground/us-central1/savePlayRecord).
+[debug] [2025-05-03T03:43:20.573Z] [functions[us-central1-getPlayRecords]] http function initialized (http://127.0.0.1:5000/drum-playground/us-central1/getPlayRecords).
+[debug] [2025-05-03T03:43:20.573Z] [functions[us-central1-calculateStats]] http function initialized (http://127.0.0.1:5000/drum-playground/us-central1/calculateStats).
+[debug] [2025-05-03T03:43:20.573Z] [functions[us-central1-onNewUserSignup]] function ignored because the firestore emulator does not exist or is not running.
+[debug] [2025-05-03T03:43:20.573Z] [functions[us-central1-sendPaymentNotification]] http function initialized (http://127.0.0.1:5000/drum-playground/us-central1/sendPaymentNotification).
+[info] i  functions: Loaded functions: sendReservationMail, sendCancelMail, savePlayRecord, getPlayRecords, calculateStats, onNewUserSignup, sendPaymentNotification 
+[warn] !  functions: The following emulators are not running, calls to these services will affect production: firestore, database, pubsub, storage, eventarc, tasks 
+[debug] [2025-05-10T11:21:40.714Z] ----------------------------------------------------------------------
+[debug] [2025-05-10T11:21:40.718Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\GB-AMD-006\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js functions:shell
+[debug] [2025-05-10T11:21:40.718Z] CLI Version:   14.2.2
+[debug] [2025-05-10T11:21:40.718Z] Platform:      win32
+[debug] [2025-05-10T11:21:40.718Z] Node Version:  v22.15.0
+[debug] [2025-05-10T11:21:40.718Z] Time:          Sat May 10 2025 20:21:40 GMT+0900 (대한민국 표준시)
+[debug] [2025-05-10T11:21:40.719Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-05-10T11:21:40.721Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2025-05-10T11:21:40.945Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-05-10T11:21:40.945Z] > authorizing via signed-in user (mindfree4u2@gmail.com)
+[debug] [2025-05-10T11:21:40.945Z] [iam] checking project drum-playground for permissions ["firebase.projects.get"]
+[debug] [2025-05-10T11:21:40.946Z] Checked if tokens are valid: false, expires at: 1746802546796
+[debug] [2025-05-10T11:21:40.946Z] Checked if tokens are valid: false, expires at: 1746802546796
+[debug] [2025-05-10T11:21:40.946Z] > refreshing access token with scopes: []
+[debug] [2025-05-10T11:21:40.947Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-05-10T11:21:40.947Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-05-10T11:21:41.196Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-05-10T11:21:41.197Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-05-10T11:21:41.211Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/drum-playground:testIamPermissions [none]
+[debug] [2025-05-10T11:21:41.211Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/drum-playground:testIamPermissions x-goog-quota-user=projects/drum-playground
+[debug] [2025-05-10T11:21:41.211Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/drum-playground:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2025-05-10T11:21:41.432Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2025-05-10T11:21:41.432Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2025-05-10T11:21:42.062Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/drum-playground:testIamPermissions 200
+[debug] [2025-05-10T11:21:42.062Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/drum-playground:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2025-05-10T11:21:42.066Z] [functions] Functions Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2025-05-10T11:21:42.092Z] defaultcredentials: writing to file C:\Users\GB-AMD-006\AppData\Roaming\firebase\mindfree4u2_gmail_com_application_default_credentials.json
+[debug] [2025-05-10T11:21:42.094Z] DEBUG: Setting GAC to C:\Users\GB-AMD-006\AppData\Roaming\firebase\mindfree4u2_gmail_com_application_default_credentials.json
+[debug] [2025-05-10T11:21:42.094Z] Checked if tokens are valid: true, expires at: 1746879700197
+[debug] [2025-05-10T11:21:42.095Z] Checked if tokens are valid: true, expires at: 1746879700197
+[debug] [2025-05-10T11:21:42.095Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/drum-playground/adminSdkConfig [none]
+[debug] [2025-05-10T11:21:43.059Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/drum-playground/adminSdkConfig 200
+[debug] [2025-05-10T11:21:43.059Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/drum-playground/adminSdkConfig {"projectId":"drum-playground","storageBucket":"drum-playground.firebasestorage.app"}
+[debug] [2025-05-10T11:21:43.082Z] [functions] Watching "D:\Study\Cursor\drum-playground\functions" for Cloud Functions...
+[debug] [2025-05-10T11:21:43.086Z] Validating nodejs source
+[debug] [2025-05-10T11:21:44.252Z] > [functions] package.json contents: {
+  "name": "functions",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "firebase-admin": "^13.3.0",
+    "firebase-functions": "^6.3.2",
+    "nodemailer": "^6.10.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.25.1",
+    "eslint": "^9.25.1",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^16.0.0"
+  },
+  "description": ""
+}
+[debug] [2025-05-10T11:21:44.252Z] Building nodejs source
+[debug] [2025-05-10T11:21:44.253Z] Failed to find version of module node: reached end of search path D:\Study\Cursor\drum-playground\functions\node_modules
+[warn] !  functions: Your requested "node" version "18" doesn't match your global version "22". Using node@22 from host. 
+[debug] [2025-05-10T11:21:44.255Z] Could not find functions.yaml. Must use http discovery
+[debug] [2025-05-10T11:21:44.263Z] Found firebase-functions binary at 'D:\Study\Cursor\drum-playground\functions\node_modules\.bin\firebase-functions'
+[info] Serving at port 8040
+
+[debug] [2025-05-10T11:21:48.696Z] Got response from /__/functions.yaml {"endpoints":{"sendReservationMail":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","secretEnvironmentVariables":[{"key":"NAVER_EMAIL"},{"key":"NAVER_PASSWORD"}],"labels":{},"eventTrigger":{"eventType":"google.cloud.firestore.document.v1.created","eventFilters":{"database":"(default)","namespace":"(default)"},"eventFilterPathPatterns":{"document":"reservations/{reservationId}"},"retry":false},"entryPoint":"sendReservationMail"},"sendCancelMail":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","secretEnvironmentVariables":[{"key":"NAVER_EMAIL"},{"key":"NAVER_PASSWORD"}],"labels":{},"eventTrigger":{"eventType":"google.cloud.firestore.document.v1.deleted","eventFilters":{"database":"(default)","namespace":"(default)"},"eventFilterPathPatterns":{"document":"reservations/{reservationId}"},"retry":false},"entryPoint":"sendCancelMail"},"savePlayRecord":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"callableTrigger":{},"entryPoint":"savePlayRecord"},"getPlayRecords":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"callableTrigger":{},"entryPoint":"getPlayRecords"},"calculateStats":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"callableTrigger":{},"entryPoint":"calculateStats"},"onNewUserSignup":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","secretEnvironmentVariables":[{"key":"NAVER_EMAIL"},{"key":"NAVER_PASSWORD"}],"labels":{},"eventTrigger":{"eventType":"google.cloud.firestore.document.v1.created","eventFilters":{"database":"(default)","namespace":"(default)"},"eventFilterPathPatterns":{"document":"users/{userId}"},"retry":false},"entryPoint":"onNewUserSignup"},"sendPaymentNotification":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","secretEnvironmentVariables":[{"key":"NAVER_EMAIL"},{"key":"NAVER_PASSWORD"}],"labels":{},"callableTrigger":{},"entryPoint":"sendPaymentNotification"},"sendIdEmail":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","secretEnvironmentVariables":[{"key":"NAVER_EMAIL"},{"key":"NAVER_PASSWORD"}],"labels":{},"callableTrigger":{},"entryPoint":"sendIdEmail"},"sendPasswordEmail":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"callableTrigger":{},"entryPoint":"sendPasswordEmail"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{}}
+[debug] [2025-05-10T11:21:52.745Z] [functions] Loaded functions definitions from source: sendReservationMail, sendCancelMail, savePlayRecord, getPlayRecords, calculateStats, onNewUserSignup, sendPaymentNotification, sendIdEmail, sendPasswordEmail.
+[debug] [2025-05-10T11:21:52.746Z] [functions[us-central1-sendReservationMail]] function ignored because the firestore emulator does not exist or is not running.
+[debug] [2025-05-10T11:21:52.746Z] [functions[us-central1-sendCancelMail]] function ignored because the firestore emulator does not exist or is not running.
+[debug] [2025-05-10T11:21:52.746Z] [functions[us-central1-savePlayRecord]] http function initialized (http://127.0.0.1:5000/drum-playground/us-central1/savePlayRecord).
+[debug] [2025-05-10T11:21:52.746Z] [functions[us-central1-getPlayRecords]] http function initialized (http://127.0.0.1:5000/drum-playground/us-central1/getPlayRecords).
+[debug] [2025-05-10T11:21:52.746Z] [functions[us-central1-calculateStats]] http function initialized (http://127.0.0.1:5000/drum-playground/us-central1/calculateStats).
+[debug] [2025-05-10T11:21:52.746Z] [functions[us-central1-onNewUserSignup]] function ignored because the firestore emulator does not exist or is not running.
+[debug] [2025-05-10T11:21:52.746Z] [functions[us-central1-sendPaymentNotification]] http function initialized (http://127.0.0.1:5000/drum-playground/us-central1/sendPaymentNotification).
+[debug] [2025-05-10T11:21:52.746Z] [functions[us-central1-sendIdEmail]] http function initialized (http://127.0.0.1:5000/drum-playground/us-central1/sendIdEmail).
+[debug] [2025-05-10T11:21:52.746Z] [functions[us-central1-sendPasswordEmail]] http function initialized (http://127.0.0.1:5000/drum-playground/us-central1/sendPasswordEmail).
+[info] i  functions: Loaded functions: sendReservationMail, sendCancelMail, savePlayRecord, getPlayRecords, calculateStats, onNewUserSignup, sendPaymentNotification, sendIdEmail, sendPasswordEmail 
+[warn] !  functions: The following emulators are not running, calls to these services will affect production: firestore, database, pubsub, storage, eventarc, tasks 

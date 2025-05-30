@@ -1,0 +1,198 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+/* @media (max-width: 768px) { */
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+
+  .main-content {
+    text-align: center;
+    padding: 1rem;
+    flex: 1;
+    padding-bottom: 40px;
+    /* margin-left: 1px;
+    margin-right:1px; */
+  }
+  
+  .main-content h1 {
+    color: #2c3e50;
+    margin-bottom: 2rem;
+  }
+  
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.app-layout {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-layout {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fa;
+}
+
+.content-wrapper {
+  padding-top: 80px; /* 네비게이션 바 높이 + 여유 공간 */
+  /* padding-bottom: 2rem; */
+  flex: 1;
+  /* width: 100%; */
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-bottom: 10px; /* footer와의 간격 */
+/*   padding-left: 1rem;
+  padding-right: 1rem; */
+}
+
+.main-content {
+  text-align: center;
+  padding: 1rem 0;
+  flex: 1;
+  padding-bottom: 40px;
+}
+
+.main-content h1 {
+  color: #2c3e50;
+  margin-bottom: 2rem;
+}
+
+/* 로딩 스타일 */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-size: 1.2rem;
+  color: #2c3e50;
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* 카카오톡 인앱 브라우저 최적화 스타일 */
+.app.kakao-inapp {
+  /* 카카오톡 인앱 브라우저에서 스크롤 최적화 */
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch;
+}
+
+.app.kakao-inapp * {
+  /* 터치 이벤트 최적화 */
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+.app.kakao-inapp input,
+.app.kakao-inapp textarea,
+.app.kakao-inapp select {
+  /* iOS에서 입력 필드 줌 방지 */
+  font-size: 16px !important;
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+.app.kakao-inapp button {
+  /* 버튼 터치 최적화 */
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* 카카오톡 인앱 브라우저 알림 바 */
+.kakao-inapp-notice {
+  position: sticky;
+  top: 0;
+  background: linear-gradient(135deg, #FEE500, #FFCD00);
+  color: #3C1E1E;
+  padding: 8px 16px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+  z-index: 1000;
+  border-bottom: 1px solid #E6D200;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* 카카오톡 인앱에서 컨텐츠 래퍼 조정 */
+.app.kakao-inapp .content-wrapper {
+  padding-top: 120px; /* 네비게이션 바 + 카카오 알림 바 높이 */
+}
+
+/* 모바일 최적화 (카카오톡 인앱 포함) */
+@media (max-width: 768px) {
+  .app.kakao-inapp {
+    font-size: 14px;
+  }
+  
+  .app.kakao-inapp .content-wrapper {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  
+  .app.kakao-inapp .main-content {
+    padding: 0.5rem;
+  }
+}
+
+/* 카카오톡 인앱에서 특정 요소들 숨기기 (필요시) */
+.app.kakao-inapp .external-link-only {
+  display: none;
+}
+
+/* 카카오톡 인앱에서만 보이는 요소들 */
+.kakao-inapp-only {
+  display: none;
+}
+
+.app.kakao-inapp .kakao-inapp-only {
+  display: block;
+}

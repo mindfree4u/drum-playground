@@ -1,0 +1,148 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 0px;
+  margin-top:-60px;
+  background-color: #f5f5f5;
+}
+
+.login-form {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 300px;
+
+}
+
+.form-group {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 0px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.auth-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.signup-link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.signup-link:hover {
+  text-decoration: underline;
+}
+
+.find-link {
+  background: none;
+  border: none;
+  color: #007bff;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  width: auto;
+}
+
+.find-link:hover {
+  text-decoration: underline;
+  background: none;
+}
+
+.error-message {
+  color: #dc3545;
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.success-message {
+  color: #28a745;
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.find-form {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 300px;
+  margin-top: 20px;
+  position: relative;
+}
+
+.find-form h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+  padding-right: 30px;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-button:hover {
+  color: #333;
+  background: none;
+} 

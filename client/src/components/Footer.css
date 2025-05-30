@@ -1,0 +1,39 @@
+.footer {
+  background-color: #333333;
+  color: white;
+  padding: 10px 0;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.footer-info {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  gap: 5px;
+}
+
+.footer-info p {
+  margin: 0;
+  line-height: 1.0;
+}
+
+.footer-info strong {
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .footer-info p {
+    font-size: 12px;
+  }
+} 

@@ -1,0 +1,20 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o/{allPaths=**} {
+    allow read: if true;
+    allow create: if request.auth != null;
+    allow update: if request.auth != null;
+    allow delete: if request.auth != null; // 인증된 사용자만 삭제 허용
+  }
+  match /b/{bucket}/o/playground-photos/{filename} {
+    allow create: if request.auth != null;
+    allow update: if request.auth != null;
+    allow delete: if request.auth != null; // playground-photos 폴더에 인증된 사용자만 삭제 허용 (더 구체적인 규칙)
+  }
+  match /b/{bucket}/o/introduction-photos/{filename} {
+    allow create: if request.auth != null;
+    allow update: if request.auth != null;
+    allow delete: if request.auth != null; // introduction-photos 폴더에 인증된 사용자만 삭제 허용 (더 구체적인 규칙)
+  }
+}

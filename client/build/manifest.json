@@ -1,0 +1,43 @@
+{
+  "short_name": "드럼놀이터",
+  "name": "드럼놀이터 예약시스템",
+  "icons": [
+    {
+      "src": "ddf_background.jpeg",
+      "type": "image/jpeg",
+      "sizes": "1080x1920",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "orientation": "portrait",
+  "prefer_related_applications": false,
+  "scope": "/",
+  "dir": "ltr",
+  "lang": "ko-KR",
+  "categories": ["business", "productivity"],
+  "iarc_rating_id": "",
+  "shortcuts": [],
+  "description": "드럼놀이터 예약시스템",
+  "screenshots": [
+    {
+      "src": "ddf_background.jpeg",
+      "sizes": "1080x1920",
+      "type": "image/jpeg"
+    }
+  ],
+  "display_override": ["standalone", "fullscreen"],
+  "edge_side_panel": {
+    "preferred_width": 320
+  },
+  "splash_pages": null,
+  "startup_url": ".",
+  "launch_handler": {
+    "client_mode": "focus-existing"
+  },
+  "related_applications": [],
+  "shortcuts": []
+}
