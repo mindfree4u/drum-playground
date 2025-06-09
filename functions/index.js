@@ -12,7 +12,7 @@ admin.initializeApp();
 const naverEmail = defineSecret('NAVER_EMAIL');
 const naverPassword = defineSecret('NAVER_PASSWORD');
 
-const adminMail = ['mindfree4u@daum.net', 'jsdtoner@naver.com', 'ddfoo@naver.com'];
+const adminMail = ['jsdtoner@naver.com', 'ddfoo@naver.com'];
 
 const getTransporter = (email, password) => nodemailer.createTransport({
   host: 'smtp.naver.com',

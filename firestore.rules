@@ -4,13 +4,13 @@ service cloud.firestore {
   match /databases/{database}/documents {
     match /{document=**} {
         function cors() {
-      			return request.headers.get('Origin') == "http://localhost:3000"
-      		|| request.headers.get('Origin') == "https://drum-playground.firebaseapp.com"
-          || request.headers.get('Origin') == "https://drum-playgroung.web.app"
-          || request.headers.get('Origin') == "https://ddf.kro.kr"
-          || request.headers.get('Origin') == "https://www.ddf.kro.kr"
-          || request.headers.get('Origin') == "https://ddfoo.co.kr"
-          || request.headers.get('Origin') == "https://www.ddfoo.co.kr";
+      			return request.headers['Origin'] == "http://localhost:3000"
+      		|| request.headers['Origin'] == "https://drum-playground.firebaseapp.com"
+          || request.headers['Origin'] == "https://drum-playgroung.web.app"
+          || request.headers['Origin'] == "https://ddf.kro.kr"
+          || request.headers['Origin'] == "https://www.ddf.kro.kr"
+          || request.headers['Origin'] == "https://ddfoo.co.kr"
+          || request.headers['Origin'] == "https://www.ddfoo.co.kr";
     }
       allow read, write: if true;
       allow create: if cors();
