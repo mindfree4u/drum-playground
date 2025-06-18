@@ -127,7 +127,7 @@ const PlaygroundPhotos = ({ isAdmin }) => {
 
   return (
     <div className="playground-photos-container">
-      <h2>놀이터 사진 갤러리</h2>
+      <h2>놀이터 사진</h2>
       
       {isAdmin && (
         <div className="upload-section">
