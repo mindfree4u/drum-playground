@@ -106,6 +106,7 @@ function MainMenu({ isAdmin }) {
         
         <button className="navbar-toggler" onClick={toggleMenu}>
           <span className="navbar-toggler-icon"></span>
+          <span className="menu-text">메뉴</span>
         </button>
         
         <div className={`navbar-collapse ${isMenuOpen ? 'show' : ''}`}>
