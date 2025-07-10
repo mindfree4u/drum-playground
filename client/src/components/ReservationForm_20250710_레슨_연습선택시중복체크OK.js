@@ -290,30 +290,7 @@ function ReservationForm() {
     const localDate = new Date(selectedDate.getTime() - (selectedDate.getTimezoneOffset() * 60000));
     const dateStr = localDate.toISOString().split('T')[0];
     const reservationKey = `${dateStr}_${timeSlot}_${room}`;
-
-    // 빈 슬롯(예약이 없는 경우)에만 DB 중복 체크
-    if (!reservations[reservationKey]) {
-      try {
-        const reservationsRef = collection(db, 'reservations');
-        const q = query(
-          reservationsRef,
-          where('date', '==', dateStr),
-          where('timeSlot', '==', timeSlot),
-          where('room', '==', room)
-        );
-        const querySnapshot = await getDocs(q);
-        if (!querySnapshot.empty) {
-          alert('이미 예약된 시간입니다.');
-          fetchReservations(selectedDate); // 예약 테이블 새로고침
-          return;
-        }
-      } catch (error) {
-        console.error('예약 중복 체크 중 오류:', error);
-        alert('예약 상태 확인 중 오류가 발생했습니다. 다시 시도해 주세요.');
-        return;
-      }
-    }
-
+    
     if (reservations[reservationKey]) {
       const isMyReservation = reservations[reservationKey] === auth.currentUser.uid;
       
